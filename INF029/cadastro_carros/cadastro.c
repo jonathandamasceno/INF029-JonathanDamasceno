@@ -1,35 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX 3
 
 /*
-atividade simplificada presumindo muitas coisas
 
-1 - ano tem que ser entre 1900 e 2025
-2 - chassi com 3 digitos
-3 - maximo de carros na lista = 50
-
-obs.: não guarda os dados em nenhum arquivo (temporário)
+obs2.: não guarda os dados em nenhum arquivo (temporário)
       pode ser feito usando .txt ou .json pra guardar a lista
 
 */
 
-
 int main(){
-    int sair = 0, i=0;
+    int sair = 0, qtdCarros=0;
 
     struct Carro{
         int ano;
         int chassi;
     };
 
-    struct Carro lista[50];
+    struct Carro lista[MAX];
 
     while(!sair){
         int escolha;
 
         printf("\n1 - Cadastrar Veiculo\n"
                "2 - Ver Veiculos\n"
-               "3 - Sair\n> ");
+               "3 - Atualizar\n"
+               "4 - Deletar\n"
+               "5 - Sair\n> ");
             
         scanf("%d", &escolha);
 
@@ -40,36 +37,33 @@ int main(){
                 int ano;
                 int chassi;
 
-                printf("ano(1900 - 2025), chassi(100 - 999)\n\n");
-
                 printf("ano: ");
                 scanf("%d", &ano);
 
                 printf("chassi: ");
                 scanf("%d", &chassi);
 
-                if((ano < 2026 && ano >= 1900) && (chassi > 99 && chassi < 1000)){
-                    if(i == 50){
-                        printf("limite de carros alcancado");
-                    }else{
+                
+                if(qtdCarros == MAX){
+                    printf("limite de carros alcancado");
+                }else{
 
-                        struct Carro carro;
-                        carro.ano = ano;
-                        carro.chassi = chassi;
+                    struct Carro carro;
+                    carro.ano = ano;
+                    carro.chassi = chassi;
 
-                        lista[i] = carro;
-                        i++;
-                    }
-
-                    break;
+                    lista[qtdCarros] = carro;
+                    qtdCarros++;
                 }
-                printf("\ndados invalidos\n");
-            }
 
+                break;
+            }
+            
             break;
+
         case 2:
-            system("cls");
-            for(int j=0; j < i; j++){
+
+            for(int j=0; j < qtdCarros; j++){
                 printf("carro %d {\n", j+1);
 
                 printf("    ano: %d\n", lista[j].ano);
@@ -80,9 +74,45 @@ int main(){
             break;
 
         case 3:
+            for(int j=0; j < qtdCarros; j++){
+                printf("carro %d: {\n", j+1);
+
+                printf("    ano: %d\n", lista[j].ano);
+                printf("    chassi: %d\n", lista[j].chassi);
+                printf("}\n");
+            }
+
+            while(1){
+                int carroEscolhido;
+                printf("escolha o carro para ser modificado\n\n");
+                scanf("%d", &carroEscolhido);
+
+                if(carroEscolhido <= qtdCarros || carroEscolhido >= 1){
+                    printf("ano: ");
+                    scanf("%d", &lista[carroEscolhido -1].ano);
+
+                    printf("chassi: ");
+                    scanf("%d", &lista[carroEscolhido -1].chassi);
+
+                    break;
+                }
+                printf("opcao invalida\n\n");
+
+            }
+            break;
+        
+        case 4:
+            if(qtdCarros == 0){
+                printf("Sem carros cadastrados");
+                break;
+            } 
+            qtdCarros--;
+            break;
+        
+        case 5:
             sair = 1;
             break;
-
+        
         default:
             printf("\nopcao invalida\n");
             break;
