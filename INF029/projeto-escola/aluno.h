@@ -15,3 +15,5 @@ int qtd_alunos;
 void cadAlunos(Aluno *list, int qtdAlunos);
 //lista//
 void listAlunos(Aluno *list, int qtdAlunos);
+//atualiza//
+void updateAlunos(Aluno *list, int qtdAlunos);

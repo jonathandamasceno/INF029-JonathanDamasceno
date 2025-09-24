@@ -202,7 +202,6 @@ void startListing(int valor){
 }
 
 void startUpdating(int valor){
-    int novaMatricula;
     switch (valor)
     {
     case 1:
@@ -215,27 +214,7 @@ void startUpdating(int valor){
         }
 
         //atualiza algum aluno especifico//
-        listAlunos(alunos, qtd_alunos);
-        printf("\n");
-        int att;
-
-        while(1){
-            printf("Escolha o numero do aluno a ser atualizado: ");
-            scanf("%d", &att);
-            if(att >= 1 && att <= qtd_alunos){
-                printf("%d", alunos[att-1].nMatricula);
-
-
-                // só um exemplo por enquanto
-                printf("Nova matricula: ");
-                scanf("%d", &novaMatricula);
-
-                //vai ter algo pra validar 
-                break;
-            }
-            printf("invalido\n");
-        }
-
+        updateAlunos(alunos, qtd_alunos);
         break;
     }
 }
