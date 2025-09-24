@@ -57,7 +57,7 @@ void menu(){
 
     while(!quit){
 
-        printf("-----------------------\n"
+        printf("\n-----------------------\n"
                "      Projeto Escola   \n"
                "-----------------------\n"
                "| 1 - Cadastro        |\n"
@@ -67,7 +67,7 @@ void menu(){
                "| 5 - Sair            |\n"
                "-----------------------\n");
         scanf("%d", &option);
-
+        printf("\n");
 
         switch (option)
         {
@@ -79,7 +79,7 @@ void menu(){
                 printf("\n1 - Aluno\n"
                        "2 - Professor\n"
                        "3 - Disciplina\n"
-                       " ");
+                       ">");
 
                 scanf("%d", &cadaster);
                 printf("\n");
@@ -108,7 +108,7 @@ void menu(){
                 printf("\n1 - Aluno\n"
                         "2 - Professor\n"
                         "3 - Disciplina\n"
-                        " ");
+                        ">");
 
                 scanf("%d", &listing);
                 printf("\n");
@@ -133,7 +133,7 @@ void menu(){
                 printf("\n1 - Aluno\n"
                         "2 - Professor\n"
                         "3 - Disciplina\n"
-                        " ");
+                        ">");
 
                 scanf("%d", &updating);
                 printf("\n");
@@ -149,6 +149,7 @@ void menu(){
 
             break;
         
+        //-----deleting-----//
         case 4:
             printf("deleta");
             printf("\n");

@@ -15,17 +15,29 @@ void cadAlunos(Aluno *list, int qtdAlunos){
         }else{
             printf("\n(aluno No%d)\n", qtdAlunos+1);
 
-            printf("\nMatricula: ");
+            printf("Matricula: ");
             scanf("%d", &matricula);
 
-            printf("\nsexo: ");
+            printf("sexo: ");
             scanf(" %c", &sx);
 
             if(matricula <= 0){
                 printf("matricula invalida");
 
             }else{
-                list[qtdAlunos].nMatricula = matricula;
+                int achouMatricula = 0;
+                for(int j =0; j< qtdAlunos; j++){
+                    if(list[j].nMatricula == matricula){
+                        achouMatricula = 1;
+                    }
+                }
+                if(achouMatricula == 1){
+                    printf("Ja existe um aluno com essa matricula");
+                    break;
+                }else{
+                    list[qtdAlunos].nMatricula = matricula;
+                }
+                
             }
 
             // converte pra minusculo caso tenha colocado maiusculo
@@ -47,6 +59,7 @@ void cadAlunos(Aluno *list, int qtdAlunos){
 }
 
 void listAlunos(Aluno *list, int qtdAlunos){
+    printf("\n");
     if(qtdAlunos == 0){
         printf("Lista vazia.\n");
     }else{
@@ -54,5 +67,32 @@ void listAlunos(Aluno *list, int qtdAlunos){
             printf("%d aluno - %d %c\n", alu+1, list[alu].nMatricula, list[alu].sexo);
         }
     }
+
+}
+
+void updateAlunos(Aluno *list, int qtdAlunos){
+    int matricula;
+    int achouAluno = 0, indiceAluno;
+    listAlunos(list, qtdAlunos);
+
+    while(1){
+        printf("Matricula do aluno que deseja atualizar: ");
+        scanf("%d", &matricula);
+
+        if(matricula > 0){
+            for(int j =0; j< qtdAlunos; j++){
+                if(list[j].nMatricula == matricula){
+                    achouAluno = 1;
+                    indiceAluno = j;
+                }
+            }
+        }
+        if(achouAluno == 1){
+            break;
+        }
+        printf("matricula invalida ou nao existe");
+    }
+
+    // aqui vao ser colocados os novos dados
 
 }
