@@ -59,13 +59,9 @@ void cadAlunos(Aluno *list, int qtdAlunos){
 }
 
 void listAlunos(Aluno *list, int qtdAlunos){
-    printf("\n");
-    if(qtdAlunos == 0){
-        printf("Lista vazia.\n");
-    }else{
-        for(int alu = 0; alu < qtdAlunos; alu++){
-            printf("%d aluno - %d %c\n", alu+1, list[alu].nMatricula, list[alu].sexo);
-        }
+    printf("\n"); 
+    for(int alu = 0; alu < qtdAlunos; alu++){
+        printf("%d aluno - %d %c\n", alu+1, list[alu].nMatricula, list[alu].sexo);
     }
 
 }
@@ -73,6 +69,8 @@ void listAlunos(Aluno *list, int qtdAlunos){
 void updateAlunos(Aluno *list, int qtdAlunos){
     int matricula;
     int achouAluno = 0, indiceAluno;
+
+    // melhorar visualmente a lista de alunos
     listAlunos(list, qtdAlunos);
 
     while(1){
