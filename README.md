@@ -26,10 +26,10 @@ Essa é só uma parte do projeto final utilizando somente o módulo de aluno, co
 2. **Compilando os Arquivos (usando gcc):**
     ```bash
     # No Windows
-    gcc aluno.c menu.c -o arquivoSaida.exe
+    gcc aluno.c menu.c utils.c -o arquivoSaida.exe
 
     # No MacOS/Linux
-    gcc aluno.c menu.c -o arquivoSaida
+    gcc aluno.c menu.c utils.c -o arquivoSaida
     ```
 
 3. **Executando o Arquivo:**
