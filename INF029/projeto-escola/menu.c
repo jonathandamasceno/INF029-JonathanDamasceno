@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "aluno.h"
 #include "utils.h"
+//#include "professor.h"
+//#include "disciplina.h"
 
 //----menu----//
 void menu();
@@ -67,80 +69,18 @@ void menu(){
         {
         //--------cadaster---------//
         case 1:
-            
-            while(1){
-                int cadaster;
-                printf("\n1 - Aluno\n"
-                       "2 - Professor\n"
-                       "3 - Disciplina\n"
-                       ">");
-
-                scanf("%d", &cadaster);
-                printf("\n");
-
-                if(cadaster >= 1 && cadaster <= 3){
-                    printf("\ncadastrando....\n");
-                    startCadaster(cadaster);
-                    
-                    // aqui chama a funcao de cadastro dis|alun|prof //
-                    // cadastraProfessor
-                    // cadastraAluno
-                    // cadastraDisciplina
-                    break;
-                }
-
-                printf("\nopcao invalida\n");
-            }
-            
+            startCadaster();
             break;
         
         //--------listing---------//
         case 2:
-
-            while(1){
-                int listing;
-                printf("\n1 - Aluno\n"
-                        "2 - Professor\n"
-                        "3 - Disciplina\n"
-                        ">");
-
-                scanf("%d", &listing);
-                printf("\n");
-
-                if(listing >= 1 && listing <= 3){
-                    startListing(listing);
-                    // aqui chama a funcao de listar dis|alun|prof //
-                    break;
-                }
-
-                printf("\nopcao invalida\n");
-            }
-
+            startListing();
             break;
-            
         
         //--------updating---------//
         case 3:
             
-            while(1){
-                int updating;
-                printf("\n1 - Aluno\n"
-                        "2 - Professor\n"
-                        "3 - Disciplina\n"
-                        ">");
-
-                scanf("%d", &updating);
-                printf("\n");
-
-                if(updating >= 1 && updating <= 3){
-                    startUpdating(updating);
-                    // aqui chama a funcao de atualizar dis|alun|prof //
-                    break;
-                }
-
-                printf("\nopcao invalida\n");
-            }
-
+            startUpdating();
             break;
         
         //-----deleting-----//
@@ -151,7 +91,6 @@ void menu(){
 
         //--------quit---------//
         case 5:
-            printf("sai");
             printf("\n");
             quit = 1;
             break;

@@ -2,8 +2,10 @@
 #include <stdlib.h>
 
 //----qual sera cadastrado--//
-void startCadaster(int valor);
+void startCadaster();
 //----qual sera listado--//
-void startListing(int valor);
+void startListing();
 //----qual sera atualizado--//
-void startUpdating(int valor);
+void startUpdating();
+//----qual sera deletado--//
+void startDeleting();

@@ -3,7 +3,7 @@
 #include "aluno.h"
 
 //---cadastro aluno---//
-void cadAlunos(Aluno *list, int qtdAlunos){
+void cadAlunos(Aluno list[], int qtdAlunos){
     int matricula;
     char sx;
 
@@ -58,22 +58,31 @@ void cadAlunos(Aluno *list, int qtdAlunos){
     }
 }
 
-void listAlunos(Aluno *list, int qtdAlunos){
-    printf("\n"); 
-    for(int alu = 0; alu < qtdAlunos; alu++){
-        printf("%d aluno - %d %c\n", alu+1, list[alu].nMatricula, list[alu].sexo);
+void listAlunos(Aluno list[], int qtdAlunos){
+    while(1){
+        if(qtdAlunos == 0){
+            printf("Lista vazia.\n");
+            break;
+        }else{
+            printf("\n"); 
+            for(int alu = 0; alu < qtdAlunos; alu++){
+                printf("Aluno (%d)\n - matricula: %d\n - sexo: %c\n", alu+1, list[alu].nMatricula, list[alu].sexo);
+            }
+            printf("\n"); 
+            break;
+        }
+        
     }
-
 }
 
-void updateAlunos(Aluno *list, int qtdAlunos){
+void updateAlunos(Aluno list[], int qtdAlunos){
     int matricula;
     int achouAluno = 0, indiceAluno;
 
-    // melhorar visualmente a lista de alunos
     listAlunos(list, qtdAlunos);
 
     while(1){
+        // por enquanto só atualiza a matricula
         printf("Matricula do aluno que deseja atualizar: ");
         scanf("%d", &matricula);
 
@@ -86,11 +95,17 @@ void updateAlunos(Aluno *list, int qtdAlunos){
             }
         }
         if(achouAluno == 1){
-            break;
+            printf("\nNova matricula: ");
+            scanf("%d", &matricula);
+            if(matricula > 0){
+                list[indiceAluno].nMatricula = matricula;
+                break;
+            }
         }
         printf("matricula invalida ou nao existe");
     }
+}
 
-    // aqui vao ser colocados os novos dados
-
+void deleteAlunos(Aluno list[], int qtdAlunos){
+    /*code*/
 }
