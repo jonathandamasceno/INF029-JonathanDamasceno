@@ -14,47 +14,44 @@ void cadAlunos(Aluno list[], int qtdAlunos){
         if(qtdAlunos == MAX_ALUNOS){
             printf("lista cheia.");
             break;
-        }else{
-            printf("\n(aluno No%d)\n", qtdAlunos+1);
+        }
 
-            printf("Matricula: ");
-            scanf("%d", &matricula);
+        printf("\n(aluno No%d)\n", qtdAlunos+1);
 
-            printf("sexo: ");
-            scanf(" %s", sexo);
+        printf("Matricula: ");
+        scanf("%d", &matricula);
 
-            printf("nascimento (dd/mm/aa): ");
-            scanf("%d/%d/%d", &dia, &mes, &ano);
+        printf("sexo: ");
+        scanf(" %s", sexo);
 
+        printf("nascimento (dd/mm/aa): ");
+        scanf("%d/%d/%d", &dia, &mes, &ano);
 
-            if(matricula <= 0){
-                printf("matricula invalida");
-
-            }else{
-                int achouMatricula = 0;
-                for(int j =0; j< qtdAlunos; j++){
-                    if(list[j].nMatricula == matricula){
-                        achouMatricula = 1;
-                    }
-                }
-                if(achouMatricula == 1){
-                    printf("Ja existe um aluno com essa matricula");
-                    break;
-                }else{
-                    list[qtdAlunos].nMatricula = matricula;
-                }
-                
-            } 
-            if(!validaSexo(sexo)){
-                printf("Sexo invalido");
-                break;
-            }
-
-            strcpy(list[qtdAlunos].sexo,  sexo);
-            qtd_alunos++;
-        
+        if(!validaSexo(sexo)){
+            printf("Sexo invalido");
             break;
         }
+
+        if(matricula <= 0){
+            printf("matricula invalida");
+            break;
+        }
+        int achouMatricula = 0;
+        for(int j =0; j< qtdAlunos; j++){
+            if(list[j].nMatricula == matricula){
+                achouMatricula = 1;
+            }
+        }
+        if(achouMatricula == 1){
+            printf("Ja existe um aluno com essa matricula");
+            break;   
+        } 
+
+        list[qtdAlunos].nMatricula = matricula;
+        strcpy(list[qtdAlunos].sexo, sexo);
+
+        qtd_alunos++;
+        break;
         
     }
 }
