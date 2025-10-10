@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "aluno.h"
+#include "utils.h"
 
 //---cadastro aluno---//
 void cadAlunos(Aluno list[], int qtdAlunos){
-    int matricula;
-    char sx;
+    int matricula, dia, mes, ano;
+    char sexo[10], cpf[15];
 
     while(1){
 
@@ -19,7 +21,11 @@ void cadAlunos(Aluno list[], int qtdAlunos){
             scanf("%d", &matricula);
 
             printf("sexo: ");
-            scanf(" %c", &sx);
+            scanf(" %s", sexo);
+
+            printf("nascimento (dd/mm/aa): ");
+            scanf("%d/%d/%d", &dia, &mes, &ano);
+
 
             if(matricula <= 0){
                 printf("matricula invalida");
@@ -38,18 +44,13 @@ void cadAlunos(Aluno list[], int qtdAlunos){
                     list[qtdAlunos].nMatricula = matricula;
                 }
                 
+            } 
+            if(!validaSexo(sexo)){
+                printf("Sexo invalido");
+                break;
             }
 
-            // converte pra minusculo caso tenha colocado maiusculo
-            if(sx == 'F' || sx == 'M'){
-                sx = sx - 'A' + 'a';
-
-            }else if(sx != 'f' && sx != 'm'){
-                printf("opcao invalida");
-                break;
-            }   
-            
-            list[qtdAlunos].sexo = sx;
+            strcpy(list[qtdAlunos].sexo,  sexo);
             qtd_alunos++;
         
             break;
@@ -66,7 +67,11 @@ void listAlunos(Aluno list[], int qtdAlunos){
         }else{
             printf("\n"); 
             for(int alu = 0; alu < qtdAlunos; alu++){
-                printf("Aluno (%d)\n - matricula: %d\n - sexo: %c\n", alu+1, list[alu].nMatricula, list[alu].sexo);
+                printf("Aluno (%d)\n", alu+1);
+                printf("Sexo: %c\n", list[alu].sexo);
+                // printf("Data de Nascimento (%d)\n", list[alu].dNascimento);
+                printf("Matricula: %d\n", list[alu].nMatricula);
+                printf("CPF: %s\n", list[alu].cpf);
             }
             printf("\n"); 
             break;
@@ -94,13 +99,13 @@ void updateAlunos(Aluno list[], int qtdAlunos){
                 }
             }
         }
+
+        // chamando a função de cadastro com o 
+        // indice do aluno pra refazer o cadastro
+
         if(achouAluno == 1){
-            printf("\nNova matricula: ");
-            scanf("%d", &matricula);
-            if(matricula > 0){
-                list[indiceAluno].nMatricula = matricula;
-                break;
-            }
+            cadAlunos(alunos, indiceAluno);
+            break;
         }
         printf("matricula invalida ou nao existe");
     }

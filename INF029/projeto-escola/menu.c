@@ -39,12 +39,12 @@ void infDisciplina(Disciplina *list, int qtdDisciplinas);
 //--------main------//
 int main(){
 
+    int qtd_alunos=0;
+
     menu();
 
     return 0;
 }
-
-int qtd_alunos=0;
 
 void menu(){
 
@@ -60,7 +60,8 @@ void menu(){
                "| 2 - Listar          |\n"
                "| 3 - Atualizar       |\n"
                "| 4 - Deletar         |\n"
-               "| 5 - Sair            |\n"
+               "| 5 - Relatorios      |\n"
+               "| 6 - Sair            |\n"
                "-----------------------\n");
         scanf("%d", &option);
         printf("\n");
@@ -68,32 +69,26 @@ void menu(){
         switch (option)
         {
         //--------cadaster---------//
-        case 1:
-            startCadaster();
-            break;
+        case 1: startCadaster(); break;
         
         //--------listing---------//
-        case 2:
-            startListing();
-            break;
+        case 2: startListing(); break;
         
         //--------updating---------//
-        case 3:
-            
-            startUpdating();
-            break;
+        case 3: startUpdating(); break;
         
         //-----deleting-----//
         case 4:
             printf("deleta");
             printf("\n");
             break;
-
-        //--------quit---------//
+        
+        //-----especific----//
         case 5:
-            printf("\n");
-            quit = 1;
+            printf("Relatorios");
             break;
+        //--------quit---------//
+        case 6: quit = 1; break;
         
         default:
             printf("opcao invalida");

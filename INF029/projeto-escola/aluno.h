@@ -6,7 +6,7 @@
 typedef struct aluno{
     char nome[100];
     int nMatricula;
-    char sexo;
+    char sexo[10];
     char cpf[15];
     /*falta data de nascimento*/
 } Aluno;

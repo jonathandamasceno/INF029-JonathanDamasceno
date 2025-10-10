@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "aluno.h"
 // #include "professor.h"
 // #include "discilinas.h"
@@ -116,5 +117,39 @@ void startDeleting(){
         }
 
     }
-    /* code */
+}
+
+void toLowerStr(char string[]){
+    for(int iCont = 0; string[iCont] != '\0'; iCont++){
+        if(string[iCont] >= 'A' && string[iCont] <= 'Z'){
+            string[iCont] = string[iCont] + 32;
+        }
+    }
+}
+
+int validaSexo(char sexo[]){
+    // faz uma copia
+    char temp[10];
+    int jCont;
+    for(jCont = 0; sexo[jCont] != '\0'; jCont++){
+        temp[jCont] = sexo[jCont];
+    }
+    temp[jCont] = '\0';
+
+    // minusculo
+    toLowerStr(temp);
+
+    // retorna se algum desses é valido
+    return ( 
+        strcmp(temp, "m") == 0 ||
+        strcmp(temp, "f") == 0 ||
+        strcmp(temp, "masculino") == 0 ||
+        strcmp(temp, "feminino") == 0
+    );
+
+
+}
+
+int validaData(int dia, int mes, int ano){
+    // algo
 }
