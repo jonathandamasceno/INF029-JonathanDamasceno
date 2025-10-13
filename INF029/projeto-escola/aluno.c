@@ -21,40 +21,24 @@ void cadAlunos(Aluno list[], int qtdAlunos){
 
     printf("Matricula: ");
     scanf("%d", &novoAluno.nMatricula);
+    if(!validaMatricula(novoAluno, list, qtdAlunos)) return;
 
     printf("sexo: ");
     scanf(" %s", novoAluno.sexo);
-
-    printf("nascimento (dd/mm/aa): ");
-    scanf("%d/%d/%d", &novoAluno.nDia, &novoAluno.nMes, &novoAluno.nAno);
-
-    printf("cpf: ");
-    scanf(" %s", novoAluno.cpf);
-
     if(!validaSexo(novoAluno.sexo)){
         printf("\nSexo invalido\n");
         return;
     }
 
-    if(novoAluno.nMatricula <= 0){
-        printf("\nmatricula invalida\n");
-        return;
-    }
-    int achouMatricula = 0;
-    for(int j =0; j< qtdAlunos; j++){
-        if(list[j].nMatricula == novoAluno.nMatricula){
-            achouMatricula = 1;
-        }
-    }
-    if(achouMatricula == 1){
-        printf("\nJa existe um aluno com essa matricula\n");
-        return;   
-    } 
-
+    printf("nascimento (dd/mm/aaaa): ");
+    scanf("%d/%d/%d", &novoAluno.nDia, &novoAluno.nMes, &novoAluno.nAno);
     if(!validaData(novoAluno.nDia, novoAluno.nMes, novoAluno.nAno)){
-        printf("\ndata de nascimento inválida\n");
+        printf("\ndata de nascimento invalida\n");
         return;
     }
+
+    printf("cpf: ");
+    scanf(" %s", novoAluno.cpf);
     if(!validaCpf(novoAluno.cpf)){
         printf("\nCpf invalido\n");
         return;
@@ -75,7 +59,7 @@ void listAlunos(Aluno list[], int qtdAlunos){
     }else{
         printf("\n"); 
         for(int alu = 0; alu < qtdAlunos; alu++){
-            printf("Aluno: %s\n", list[alu].nome);
+            printf("Aluno %d: %s\n", alu+1, list[alu].nome);
             printf("Sexo: %s\n", list[alu].sexo);
             printf("Data de Nascimento: %d/%d/%d\n", list[alu].nDia, list[alu].nMes, list[alu].nAno);
             printf("Matricula: %d\n", list[alu].nMatricula);
@@ -104,9 +88,6 @@ void updateAlunos(Aluno list[], int qtdAlunos){
             }
         }
     }
-
-    // chamando a função de cadastro com o 
-    // indice do aluno pra refazer o cadastro
 
     if(achouAluno == 1){
         cadAlunos(alunos, indiceAluno);

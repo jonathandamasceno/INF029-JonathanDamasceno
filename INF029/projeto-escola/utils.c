@@ -8,16 +8,16 @@
 
 void startCadaster(){
     int cadaster;
-    printf("\n1 - Aluno\n"
+    printf("\n---------------\n"
+           "1 - Aluno\n"
            "2 - Professor\n"
-           "3 - Disciplina\n"
+           "3 - Disciplina"
+           "\n---------------\n"
            ">");
 
     scanf("%d", &cadaster);
-    printf("\n");
 
     if(cadaster >= 1 && cadaster <= 3){
-        printf("\ncadastrando....\n");
         switch (cadaster)
         {
         case 1: 
@@ -41,16 +41,16 @@ void startCadaster(){
 
 void startListing(){
     int listing;
-    printf("\n1 - Aluno\n"
+    printf("\n---------------\n"
+           "1 - Aluno\n"
            "2 - Professor\n"
-           "3 - Disciplina\n"
+           "3 - Disciplina"
+           "\n---------------\n"
            ">");
 
     scanf("%d", &listing);
-    printf("\n");
 
     if(listing >= 1 && listing <= 3){
-        printf("\nlistando....\n");
         switch (listing)
         {
         case 1:
@@ -69,13 +69,14 @@ void startListing(){
 
 void startUpdating(){
     int updating;
-    printf("\n1 - Aluno\n"
+    printf("\n---------------\n"
+           "1 - Aluno\n"
            "2 - Professor\n"
-           "3 - Disciplina\n"
+           "3 - Disciplina"
+           "\n---------------\n"
            ">");
 
     scanf("%d", &updating);
-    printf("\n");
 
     if(updating >= 1 && updating <= 3){
         switch (updating)
@@ -95,13 +96,14 @@ void startUpdating(){
 
 void startDeleting(){
     int deleting;
-    printf("\n1 - Aluno\n"
+    printf("\n---------------\n"
+           "1 - Aluno\n"
            "2 - Professor\n"
-           "3 - Disciplina\n"
+           "3 - Disciplina"
+           "\n---------------\n"
            ">");
 
     scanf("%d", &deleting);
-    printf("\n");
 
     if(deleting >= 1 && deleting <= 3){
         switch (deleting)
@@ -151,7 +153,18 @@ int validaSexo(char sexo[]){
 }
 
 int validaData(int dia, int mes, int ano){
-    // algo
+    int diaCadaMes[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+    if(mes < 1 || mes > 12) return 0;
+    if(ano < 1900 || ano > 2025) return 0;
+
+    // se o ano for bissexto -> fev tem 29 dias
+    if(mes == 2 && ((ano % 400 == 0) || (ano % 4 == 0 && ano % 100 != 0))){
+        return (dia >= 1 && dia <= 29);
+    }
+
+    return (dia <= diaCadaMes[mes - 1] && dia >= 1);
+
 }
 
 int validaCpf(char cpf[]){
@@ -189,4 +202,19 @@ int validaCpf(char cpf[]){
 
     return(arrAux[9] - '0' == pDigito && arrAux[10] - '0' == sDigito);
 
+}
+
+int validaMatricula(Aluno novo, Aluno *listaAlunos, int qtdAlunos){
+    if(novo.nMatricula <= 0){
+        printf("\nmatricula invalida\n");
+        return 0;
+    }
+    int achouMatricula = 1;
+    for(int j =0; j< qtdAlunos; j++){
+        if(listaAlunos[j].nMatricula == novo.nMatricula){
+            achouMatricula = 0;
+        }
+    }
+    
+    return achouMatricula;
 }

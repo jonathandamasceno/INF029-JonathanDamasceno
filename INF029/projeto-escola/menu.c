@@ -78,21 +78,16 @@ void menu(){
         case 3: startUpdating(); break;
         
         //-----deleting-----//
-        case 4:
-            printf("deleta");
-            printf("\n");
-            break;
+        case 4: printf("deleta\n"); break;
         
         //-----especific----//
-        case 5:
-            printf("Relatorios");
-            break;
+        case 5: printf("Relatorios\n"); break;
+
         //--------quit---------//
         case 6: quit = 1; break;
         
         default:
-            printf("opcao invalida");
-            printf("\n");
+            printf("opcao invalida\n");
             break;
         }
     }

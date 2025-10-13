@@ -10,16 +10,11 @@ void startUpdating();
 //----qual sera deletado--//
 void startDeleting();
 
-/*VALIDAR DATA DE NASCIMENTO*/
+//------------------------------------------------------------------
+/*validações*/
 int validaData(int dia, int mes, int ano);
-
-/*VALIDAR CPF*/
 int validaCpf(char cpf[]);
-
-/*VALIDAR SEXO*/
 int validaSexo(char sexo[]);
-
-/**/
 void toLowerStr(char string[]);
-
-// tem que fazer as funções ainda
+int validaMatricula(Aluno novo, Aluno *listaAlunos, int qtdAlunos);
+//------------------------------------------------------------------
