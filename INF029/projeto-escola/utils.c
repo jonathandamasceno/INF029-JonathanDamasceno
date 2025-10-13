@@ -153,3 +153,40 @@ int validaSexo(char sexo[]){
 int validaData(int dia, int mes, int ano){
     // algo
 }
+
+int validaCpf(char cpf[]){
+    char arrAux[12];
+    int iCont, jCont = 0;
+    int soma=0, pDigito, sDigito;
+
+    // tira as pontuações, se houver
+    for(iCont = 0; cpf[iCont] != '\0'; iCont++){
+        if(cpf[iCont] >= '0' && cpf[iCont] <= '9'){
+            arrAux[jCont++] = cpf[iCont];
+        }
+    }
+
+    // se nao tem numeros o suficiente
+    if(jCont != 11) return 0;
+
+    // metodo pra validar 
+    for(iCont = 0, jCont = 10; iCont < 9; iCont++, jCont--){
+        soma += (arrAux[iCont] - '0') * jCont;
+    }
+
+    // primeiro digito
+    pDigito = (10 * soma) % 11;
+    if(pDigito > 9) pDigito = 0;
+
+    soma = 0; 
+    for(iCont = 0, jCont = 11; iCont < 10; iCont++, jCont--){
+        soma += (arrAux[iCont] - '0') * jCont;
+    }
+
+    // segundo digito
+    sDigito = (10 * soma) % 11;
+    if(sDigito > 9) sDigito = 0;
+
+    return(arrAux[9] - '0' == pDigito && arrAux[10] - '0' == sDigito);
+
+}

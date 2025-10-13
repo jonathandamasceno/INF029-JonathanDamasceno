@@ -8,7 +8,7 @@ typedef struct aluno{
     int nMatricula;
     char sexo[10];
     char cpf[15];
-    /*falta data de nascimento*/
+    int nDia, nMes, nAno;
 } Aluno;
 
 Aluno alunos[MAX_ALUNOS];
