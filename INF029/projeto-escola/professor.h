@@ -16,13 +16,16 @@ typedef struct professor{
 Professor professores[MAX_PROFESSORES];
 int qtd_professores;
 
-//cadastra//
+/*padrao*/
+/*------------------------------------------------------------------------*/
 void cadProfessor(Professor list[], int* qtdProfessor);
-//lista//
 void listProfessor(Professor list[], int qtdProfessor);
-//atualiza//
 void updateProfessor(Professor list[], int qtdProfessor);
-//deleta//
 void deleteProfessor(Professor list[], int qtdProfessor);
-
 int validaMatriculaPro(Professor novo, Professor list[], int qtdProfessor);
+/*------------------------------------------------------------------------*/
+
+/*relatorios (funcoes que listam de maneira especifica/ordenadas)*/
+/*------------------------------------------------------------------------*/
+/*code*/
+/*------------------------------------------------------------------------*/

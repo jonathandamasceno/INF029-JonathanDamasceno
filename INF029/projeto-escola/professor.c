@@ -85,7 +85,7 @@ void listProfessor(Professor list[], int qtdProfessor){
 void updateProfessor(Professor list[], int qtdProfessor){
     int matricula, jCont;
     int achouProfessor = 0;
-    int* indice;
+    int indice;
     printf("Matricula do professor que deseja atualizar: ");
     scanf("%d", &matricula);
 
@@ -93,7 +93,7 @@ void updateProfessor(Professor list[], int qtdProfessor){
         for(int jCont =0; jCont< qtdProfessor; jCont++){
             if(list[jCont].nMatricula == matricula){
                 achouProfessor = 1;
-                *indice = jCont;
+                indice = jCont;
             }
         }
     }
@@ -145,8 +145,7 @@ void updateProfessor(Professor list[], int qtdProfessor){
         }
 
         novoProfessor.ativo = 1;
-        list[qtdProfessor] = novoProfessor;
-        qtdProfessor++;
+        list[indice] = novoProfessor;
 
         return;
     }

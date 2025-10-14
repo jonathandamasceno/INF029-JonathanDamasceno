@@ -22,10 +22,7 @@ void startCadaster(){
         {
         case 1: cadAlunos(alunos, &qtd_alunos); break;
         case 2: cadProfessor(professores, &qtd_professores); break;
-
-        default:
-            printf("valor invalido");
-            break;
+        default: printf("valor invalido"); break;
         }
     }
 
@@ -47,10 +44,7 @@ void startListing(){
         {
         case 1: listAlunos(alunos, qtd_alunos); break;
         case 2: listProfessor(professores, qtd_professores); break;
-
-        default:
-            printf("valor invalido");
-            break;
+        default: printf("valor invalido"); break;
         }
     }
 
@@ -72,10 +66,7 @@ void startUpdating(){
         {
         case 1: updateAlunos(alunos, qtd_alunos); break;
         case 2: updateProfessor(professores, qtd_professores); break;
-
-        default:
-            printf("valor invalido");
-            break;
+        default: printf("valor invalido"); break;
         }
 
     }
@@ -97,10 +88,7 @@ void startDeleting(){
         {
         case 1: deleteAlunos(alunos, qtd_alunos); break;
         case 2: deleteProfessor(professores, qtd_professores); break;
-        
-        default:
-            printf("valor invalido");
-            break;
+        default: printf("valor invalido"); break;
         }
 
     }

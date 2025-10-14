@@ -16,13 +16,16 @@ typedef struct aluno{
 Aluno alunos[MAX_ALUNOS];
 int qtd_alunos;
 
-//cadastra//
+/*padrao*/
+/*------------------------------------------------------------------------*/
 void cadAlunos(Aluno list[], int* qtdAlunos);
-//lista//
 void listAlunos(Aluno list[], int qtdAlunos);
-//atualiza//
 void updateAlunos(Aluno list[], int qtdAlunos);
-//deleta//
 void deleteAlunos(Aluno list[], int qtdAlunos);
-
 int validaMatriculaAlu(Aluno novo, Aluno * listaAlunos, int qtdAlunos);
+/*------------------------------------------------------------------------*/
+
+/*relatorios (funcoes que listam de maneira especifica/ordenadas)*/
+/*------------------------------------------------------------------------*/
+/*code*/
+/*------------------------------------------------------------------------*/
