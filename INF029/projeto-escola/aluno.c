@@ -4,24 +4,23 @@
 #include "aluno.h"
 #include "utils.h"
 
-//---cadastro aluno---//
-void cadAlunos(Aluno list[], int qtdAlunos){
+void cadAlunos(Aluno list[], int* qtdAlunos){
     Aluno novoAluno;
-    char sexo[10], cpf[15];
+    int kCont;
 
-    if(qtdAlunos == MAX_ALUNOS){
+    if(*qtdAlunos == MAX_ALUNOS){
         printf("lista cheia.");
         return;
     }
 
-    printf("\n(aluno No%d)\n", qtdAlunos+1);
+    printf("\n(aluno No%d)\n", *qtdAlunos+1);
 
     printf("Nome: ");
     scanf(" %s", &novoAluno.nome);
 
     printf("Matricula: ");
     scanf("%d", &novoAluno.nMatricula);
-    if(!validaMatricula(novoAluno, list, qtdAlunos)) return;
+    if(!validaMatriculaAlu(novoAluno, list, *qtdAlunos)) return;
 
     printf("sexo: ");
     scanf(" %s", novoAluno.sexo);
@@ -44,39 +43,122 @@ void cadAlunos(Aluno list[], int qtdAlunos){
         return;
     }
 
-    list[qtdAlunos] = novoAluno;
-    qtd_alunos++;
+    for(int kCont =0; kCont< *qtdAlunos; kCont++){
+        if(list[kCont].cpf == novoAluno.cpf){
+            printf("cpf ja cadastrado\n");
+            return;
+        }
+    }
+
+    novoAluno.ativo = 1;
+    list[*qtdAlunos] = novoAluno;
+    (*qtdAlunos)++;
 
     return;
 
 }
 
 void listAlunos(Aluno list[], int qtdAlunos){
-
+    /*tem que melhorar essa função pra caso nao tenha nenhum da lista ativo */
     if(qtdAlunos == 0){
         printf("Lista vazia.\n");
         return;
     }else{
         printf("\n"); 
         for(int alu = 0; alu < qtdAlunos; alu++){
-            printf("Aluno %d: %s\n", alu+1, list[alu].nome);
-            printf("Sexo: %s\n", list[alu].sexo);
-            printf("Data de Nascimento: %d/%d/%d\n", list[alu].nDia, list[alu].nMes, list[alu].nAno);
-            printf("Matricula: %d\n", list[alu].nMatricula);
-            printf("CPF: %s\n", list[alu].cpf);
+            if(list[alu].ativo == 1){
+                printf("Nome: %s\n", list[alu].nome);
+                printf("Sexo: %s\n", list[alu].sexo);
+                printf("Data de Nascimento: %d/%d/%d\n", list[alu].nDia, list[alu].nMes, list[alu].nAno);
+                printf("Matricula: %d\n", list[alu].nMatricula);
+                printf("CPF: %s\n", list[alu].cpf);
+            }
+            printf("\n"); 
         }
-        printf("\n"); 
+        
         return;
     }
     
 }
 
 void updateAlunos(Aluno list[], int qtdAlunos){
+    int matricula, jCont;
+    int achouAluno = 0;
+    int* indice;
+    printf("Matricula do professor que deseja atualizar: ");
+    scanf("%d", &matricula);
+
+    if(matricula > 0){
+        for(int jCont =0; jCont< qtdAlunos; jCont++){
+            if(list[jCont].nMatricula == matricula){
+                achouAluno = 1;
+                *indice = jCont;
+            }
+        }
+    }
+
+    if(achouAluno == 1){
+        Aluno novoAluno;
+        int kCont;
+
+        if(qtdAlunos >= MAX_ALUNOS){
+            printf("lista cheia.");
+            return;
+        }
+
+        printf("\n(Professor No%d)\n", qtdAlunos+1);
+
+        printf("Novo nome: ");
+        scanf(" %s", &novoAluno.nome);
+
+        printf("Nova Matricula: ");
+        scanf("%d", &novoAluno.nMatricula);
+        if(!validaMatriculaAlu(novoAluno, list, qtdAlunos)) return;
+
+        printf("Novo sexo: ");
+        scanf(" %s", novoAluno.sexo);
+        if(!validaSexo(novoAluno.sexo)){
+            printf("\nSexo invalido\n");
+            return;
+        }
+
+        printf("Nova data de nascimento (dd/mm/aaaa): ");
+        scanf("%d/%d/%d", &novoAluno.nDia, &novoAluno.nMes, &novoAluno.nAno);
+        if(!validaData(novoAluno.nDia, novoAluno.nMes, novoAluno.nAno)){
+            printf("\ndata de nascimento invalida\n");
+            return;
+        }
+
+        printf("Novo cpf: ");
+        scanf(" %s", novoAluno.cpf);
+        if(!validaCpf(novoAluno.cpf)){
+            printf("\nCpf invalido\n");
+            return;
+        }
+
+        for(int kCont =0; kCont< qtdAlunos; kCont++){
+            if(list[kCont].cpf == novoAluno.cpf){
+                printf("cpf ja cadastrado\n");
+                return;
+            }
+        }
+
+        novoAluno.ativo = 1;
+        list[qtdAlunos] = novoAluno;
+        qtdAlunos++;
+
+        return;
+    }
+
+    printf("matricula invalida ou nao existe");
+    return;
+
+}
+
+void deleteAlunos(Aluno list[], int qtdAlunos){
     int matricula;
     int achouAluno = 0, indiceAluno;
 
-    listAlunos(list, qtdAlunos);
-    // por enquanto só atualiza a matricula
     printf("Matricula do aluno que deseja atualizar: ");
     scanf("%d", &matricula);
 
@@ -90,13 +172,24 @@ void updateAlunos(Aluno list[], int qtdAlunos){
     }
 
     if(achouAluno == 1){
-        cadAlunos(alunos, indiceAluno);
+        list[indiceAluno].ativo = -1;
         return;
     }
-    printf("matricula invalida ou nao existe");
 
+    printf("matricula invalida ou nao existe");
 }
 
-void deleteAlunos(Aluno list[], int qtdAlunos){
-    /*code*/
+int validaMatriculaAlu(Aluno novo, Aluno * listaAlunos, int qtdAlunos){
+    if(novo.nMatricula <= 0){
+        printf("\nmatricula invalida\n");
+        return 0;
+    }
+    int achouMatricula = 1;
+    for(int j =0; j< qtdAlunos; j++){
+        if(listaAlunos[j].nMatricula == novo.nMatricula){
+            achouMatricula = 0;
+        }
+    }
+    
+    return achouMatricula;
 }

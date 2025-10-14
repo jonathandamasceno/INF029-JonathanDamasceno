@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "aluno.h"
-// #include "professor.h"
 // #include "discilinas.h"
+#include "aluno.h"
+#include "professor.h"
 #include "utils.h"
 
 void startCadaster(){
@@ -20,17 +20,9 @@ void startCadaster(){
     if(cadaster >= 1 && cadaster <= 3){
         switch (cadaster)
         {
-        case 1: 
-            cadAlunos(alunos, qtd_alunos); 
-            break;
-        case 2:
-            //inicia cadastro professor//
-            //vao ser coisas parecidas // 
-            //funcoes que verificam informacoes serao unicas pros tres casos//  
-            break;
-        case 3:
-            // inicia cadastro disciplina // 
-            break;
+        case 1: cadAlunos(alunos, &qtd_alunos); break;
+        case 2: cadProfessor(professores, &qtd_professores); break;
+
         default:
             printf("valor invalido");
             break;
@@ -53,11 +45,8 @@ void startListing(){
     if(listing >= 1 && listing <= 3){
         switch (listing)
         {
-        case 1:
-    
-            //lista todos os alunos cadastrados//
-            listAlunos(alunos, qtd_alunos);
-            break;
+        case 1: listAlunos(alunos, qtd_alunos); break;
+        case 2: listProfessor(professores, qtd_professores); break;
 
         default:
             printf("valor invalido");
@@ -81,10 +70,8 @@ void startUpdating(){
     if(updating >= 1 && updating <= 3){
         switch (updating)
         {
-        case 1:
-            //atualiza algum aluno especifico//
-            updateAlunos(alunos, qtd_alunos);
-            break;
+        case 1: updateAlunos(alunos, qtd_alunos); break;
+        case 2: updateProfessor(professores, qtd_professores); break;
 
         default:
             printf("valor invalido");
@@ -108,11 +95,9 @@ void startDeleting(){
     if(deleting >= 1 && deleting <= 3){
         switch (deleting)
         {
-        case 1:
-            //atualiza algum aluno especifico//
-            deleteAlunos(alunos, qtd_alunos);
-            break;
-
+        case 1: deleteAlunos(alunos, qtd_alunos); break;
+        case 2: deleteProfessor(professores, qtd_professores); break;
+        
         default:
             printf("valor invalido");
             break;
@@ -202,19 +187,4 @@ int validaCpf(char cpf[]){
 
     return(arrAux[9] - '0' == pDigito && arrAux[10] - '0' == sDigito);
 
-}
-
-int validaMatricula(Aluno novo, Aluno *listaAlunos, int qtdAlunos){
-    if(novo.nMatricula <= 0){
-        printf("\nmatricula invalida\n");
-        return 0;
-    }
-    int achouMatricula = 1;
-    for(int j =0; j< qtdAlunos; j++){
-        if(listaAlunos[j].nMatricula == novo.nMatricula){
-            achouMatricula = 0;
-        }
-    }
-    
-    return achouMatricula;
 }

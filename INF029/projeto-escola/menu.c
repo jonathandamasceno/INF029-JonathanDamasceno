@@ -1,20 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "aluno.h"
+#include "professor.h"
 #include "utils.h"
-//#include "professor.h"
 //#include "disciplina.h"
 
 //----menu----//
 void menu();
-
 /*
-//----struct professor----//
-typedef struct professor{
-    int nMatricula;
-    // falta coisa
-} Professor;
-
 //----struct disciplina----//
 typedef struct disciplina{
     int nMatricula;
@@ -22,25 +15,10 @@ typedef struct disciplina{
 } Disciplina;
 */
 
-
-/*
-Professor professores[MAX_PROFESSORES];
-Disciplina disciplinas[MAX_DISCIPLINAS];
-*/
-
-/*
-//---cadastro professor---//
-void infProfessor(Professor *list, int qtdProfessores);
-
-//---cadastro disciplina---//
-void infDisciplina(Disciplina *list, int qtdDisciplinas);
-*/
-
 //--------main------//
 int main(){
-
-    int qtd_alunos=0;
-
+    int qtd_alunos = 0;
+    int qtd_professores = 0;
     menu();
 
     return 0;
@@ -78,7 +56,7 @@ void menu(){
         case 3: startUpdating(); break;
         
         //-----deleting-----//
-        case 4: printf("deleta\n"); break;
+        case 4: startDeleting(); break;
         
         //-----especific----//
         case 5: printf("Relatorios\n"); break;

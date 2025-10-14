@@ -16,5 +16,4 @@ int validaData(int dia, int mes, int ano);
 int validaCpf(char cpf[]);
 int validaSexo(char sexo[]);
 void toLowerStr(char string[]);
-int validaMatricula(Aluno novo, Aluno *listaAlunos, int qtdAlunos);
 //------------------------------------------------------------------
