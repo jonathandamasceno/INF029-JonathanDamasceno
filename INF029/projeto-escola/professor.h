@@ -27,5 +27,8 @@ int validaMatriculaPro(Professor novo, Professor list[], int qtdProfessor);
 
 /*relatorios (funcoes que listam de maneira especifica/ordenadas)*/
 /*------------------------------------------------------------------------*/
-/*code*/
+void listaProfessorNome(Professor list[], int qtdProfessor);
+void listaProfessorNascimento(Professor list[], int qtdProfessor);
+void listaProfessorAniversariante(Professor list[], int qtdProfessor, int mes);
+void listaProfessorSexo(Professor list[], int qtdProfessor);
 /*------------------------------------------------------------------------*/

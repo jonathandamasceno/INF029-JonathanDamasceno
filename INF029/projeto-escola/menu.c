@@ -59,7 +59,7 @@ void menu(){
         case 4: startDeleting(); break;
         
         //-----especific----//
-        case 5: printf("Relatorios\n"); break;
+        case 5: relatorios(); break;
 
         //--------quit---------//
         case 6: quit = 1; break;

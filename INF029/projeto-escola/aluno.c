@@ -192,3 +192,19 @@ int validaMatriculaAlu(Aluno novo, Aluno * listaAlunos, int qtdAlunos){
     
     return achouMatricula;
 }
+void listaAlunoNome(Aluno list[], int qtdAlunos){
+    //
+}
+void listaAlunoAniversariante(Aluno list[], int qtdAlunos, int mes){
+    int achouAniv = 0, iCont;
+
+    for(iCont = 0; iCont < qtdAlunos; iCont++){
+        if(list[iCont].nMes == mes){
+            printf("nome: %s\n", list[iCont].nome);
+            achouAniv = 1;
+        }
+    }
+    if(!achouAniv){
+        printf("sem aniversariantes");
+    }
+}

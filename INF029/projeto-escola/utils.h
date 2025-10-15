@@ -10,6 +10,8 @@ void startUpdating();
 //----qual sera deletado--//
 void startDeleting();
 
+void relatorios();
+
 //------------------------------------------------------------------
 /*validações*/
 int validaData(int dia, int mes, int ano);

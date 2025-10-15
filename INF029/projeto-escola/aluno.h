@@ -27,5 +27,8 @@ int validaMatriculaAlu(Aluno novo, Aluno * listaAlunos, int qtdAlunos);
 
 /*relatorios (funcoes que listam de maneira especifica/ordenadas)*/
 /*------------------------------------------------------------------------*/
-/*code*/
+void listaAlunoNome(Aluno list[], int qtdAlunos);
+void listaAlunoNascimento(Aluno list[], int qtdAlunos);
+void listaAlunoAniversariante(Aluno list[], int qtdAlunos, int mes);
+void listaAlunoSexo(Aluno list[], int qtdAlunos);
 /*------------------------------------------------------------------------*/

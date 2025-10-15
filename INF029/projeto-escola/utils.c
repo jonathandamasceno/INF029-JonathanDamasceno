@@ -176,3 +176,10 @@ int validaCpf(char cpf[]){
     return(arrAux[9] - '0' == pDigito && arrAux[10] - '0' == sDigito);
 
 }
+
+void relatorios(){
+    printf("...");
+    // só um exemplo
+    // switch -> ...
+    listaProfessorNome(professores, qtd_professores);
+}

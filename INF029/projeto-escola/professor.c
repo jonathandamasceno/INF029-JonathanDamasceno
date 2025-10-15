@@ -193,3 +193,19 @@ int validaMatriculaPro(Professor novo, Professor list[], int qtdProfessor){
     
     return achouMatricula;
 }
+void listaProfessorNome(Professor list[], int qtdProfessor){
+    //
+}
+void listaProfessorAniversariante(Professor list[], int qtdProfessor, int mes){
+    int achouAniv = 0, iCont;
+
+    for(iCont = 0; iCont < qtdProfessor; iCont++){
+        if(list[iCont].nMes == mes){
+            printf("nome: %s\n", list[iCont].nome);
+            achouAniv = 1;
+        }
+    }
+    if(!achouAniv){
+        printf("sem aniversariantes");
+    }
+}
