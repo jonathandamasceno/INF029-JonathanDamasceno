@@ -59,24 +59,36 @@ void cadAlunos(Aluno list[], int* qtdAlunos){
 }
 
 void listAlunos(Aluno list[], int qtdAlunos){
-    /*tem que melhorar essa função pra caso nao tenha nenhum da lista ativo */
+    int achou = 0;
+
     if(qtdAlunos == 0){
         printf("Lista vazia.\n");
         return;
-    }else{
-        printf("\n"); 
-        for(int alu = 0; alu < qtdAlunos; alu++){
-            if(list[alu].ativo == 1){
-                printf("Nome: %s\n", list[alu].nome);
-                printf("Sexo: %s\n", list[alu].sexo);
-                printf("Data de Nascimento: %d/%d/%d\n", list[alu].nDia, list[alu].nMes, list[alu].nAno);
-                printf("Matricula: %d\n", list[alu].nMatricula);
-                printf("CPF: %s\n", list[alu].cpf);
-            }
-            printf("\n"); 
+    }
+    
+    for(int alu = 0; alu < qtdAlunos; alu++){
+        if(list[alu].ativo == 1){
+            achou = 1;
         }
-        
+    }
+
+    if(!achou){
+        printf("Nenhum aluno cadastrado");
         return;
+    }
+
+
+    printf("\n"); 
+    for(int alu = 0; alu < qtdAlunos; alu++){
+        if(list[alu].ativo == 1){
+            printf("Nome: %s\n", list[alu].nome);
+            printf("Sexo: %s\n", list[alu].sexo);
+            printf("Data de Nascimento: %d/%d/%d\n", list[alu].nDia, list[alu].nMes, list[alu].nAno);
+            printf("Matricula: %d\n", list[alu].nMatricula);
+            printf("CPF: %s\n", list[alu].cpf);
+        }
+        printf("\n"); 
+
     }
     
 }

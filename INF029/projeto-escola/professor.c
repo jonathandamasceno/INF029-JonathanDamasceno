@@ -60,24 +60,34 @@ void cadProfessor(Professor list[], int* qtdProfessor){
 }
 
 void listProfessor(Professor list[], int qtdProfessor){
-    /*tem que melhorar essa função pra caso nao tenha nenhum da lista ativo */
+    int achou = 0;
+
     if(qtdProfessor == 0){
         printf("Lista vazia.\n");
         return;
-    }else{
-        printf("\n"); 
-        for(int prof = 0; prof < qtdProfessor; prof++){
-            if(list[prof].ativo == 1){
-                printf("Nome: %s\n", list[prof].nome);
-                printf("Sexo: %s\n", list[prof].sexo);
-                printf("Data de Nascimento: %d/%d/%d\n", list[prof].nDia, list[prof].nMes, list[prof].nAno);
-                printf("Matricula: %d\n", list[prof].nMatricula);
-                printf("CPF: %s\n", list[prof].cpf);
-            }
-            printf("\n"); 
+    }
+    
+    for(int prof = 0; prof < qtdProfessor; prof++){
+        if(list[prof].ativo == 1){
+            achou = 1;
         }
-        
+    }
+
+    if(!achou){
+        printf("Nenhum professor cadastrado");
         return;
+    }
+
+    printf("\n"); 
+    for(int prof = 0; prof < qtdProfessor; prof++){
+        if(list[prof].ativo == 1){
+            printf("Nome: %s\n", list[prof].nome);
+            printf("Sexo: %s\n", list[prof].sexo);
+            printf("Data de Nascimento: %d/%d/%d\n", list[prof].nDia, list[prof].nMes, list[prof].nAno);
+            printf("Matricula: %d\n", list[prof].nMatricula);
+            printf("CPF: %s\n", list[prof].cpf);
+        }
+        printf("\n"); 
     }
     
 }
