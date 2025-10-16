@@ -145,6 +145,12 @@ int validaCpf(char cpf[]){
     int iCont, jCont = 0;
     int soma=0, pDigito, sDigito;
 
+    // verifica se todos os numeros sao iguais
+    for(iCont = 1; cpf[iCont] != '\0'; iCont++){
+        if(cpf[iCont] != cpf[0]) break;
+    }
+    if(iCont == 11 ) return 0;
+
     // tira as pontuações, se houver
     for(iCont = 0; cpf[iCont] != '\0'; iCont++){
         if(cpf[iCont] >= '0' && cpf[iCont] <= '9'){
