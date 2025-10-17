@@ -59,7 +59,7 @@ void startListing(){
         {
         case 1: listAlunos(alunos, qtd_alunos); break;
         case 2: listProfessor(professores, qtd_professores); break;
-        case 3: listaDisciplinas(disciplinas, qtd_disciplinas, professores, qtd_professores);
+        case 3: listaDisciplinas(disciplinas, qtd_disciplinas, professores, qtd_professores); break;
         default: printf("valor invalido"); break;
         }
     }
@@ -70,8 +70,7 @@ void startUpdating(){
     int updating;
     printf("\n---------------\n"
            "1 - Aluno\n"
-           "2 - Professor\n"
-           "3 - Disciplina"
+           "2 - Professor"
            "\n---------------\n"
            ">");
 
@@ -104,6 +103,12 @@ void startDeleting(){
         {
         case 1: deleteAlunos(alunos, qtd_alunos); break;
         case 2: deleteProfessor(professores, qtd_professores); break;
+        case 3:{
+            printf("\n---------------------------\n"
+                   "remove aluno da disciplina"
+                   "\n---------------------------\n");
+            removeAluno(disciplinas, qtd_disciplinas, alunos, qtd_alunos); break;
+        }
         default: printf("valor invalido"); break;
         }
 

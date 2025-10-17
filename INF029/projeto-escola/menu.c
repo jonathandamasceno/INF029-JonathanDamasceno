@@ -32,7 +32,7 @@ void menu(){
                "| 1 - Cadastro        |\n"
                "| 2 - Listar          |\n"
                "| 3 - Atualizar       |\n"
-               "| 4 - Deletar         |\n"
+               "| 4 - Deletar/Remover |\n"
                "| 5 - Relatorios      |\n"
                "| 6 - Sair            |\n"
                "-----------------------\n");

@@ -92,6 +92,12 @@ void listAlunos(Aluno list[], int qtdAlunos){
 }
 
 void updateAlunos(Aluno list[], int qtdAlunos){
+
+    if(qtdAlunos == 0){
+        printf("lista vazia.\n");
+        return;
+    }
+
     int matricula, jCont;
     int achouAluno = 0;
     int indice;

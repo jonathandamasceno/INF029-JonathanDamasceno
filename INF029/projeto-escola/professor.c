@@ -91,6 +91,12 @@ void listProfessor(Professor list[], int qtdProfessor){
 }
 
 void updateProfessor(Professor list[], int qtdProfessor){
+
+    if(qtdProfessor == 0){
+        printf("lista vazia.\n");
+        return;
+    }
+
     int matricula, jCont;
     int achouProfessor = 0;
     int indice;
