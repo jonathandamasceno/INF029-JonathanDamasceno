@@ -205,5 +205,6 @@ int validaCpf(char cpf[]){
 }
 
 void relatorios(){
-    /*code*/
+    printf("nada aqui.\n");
+    return;
 }
