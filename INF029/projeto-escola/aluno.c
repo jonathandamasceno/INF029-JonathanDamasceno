@@ -13,10 +13,8 @@ void cadAlunos(Aluno list[], int* qtdAlunos){
         return;
     }
 
-    printf("\n(aluno No%d)\n", *qtdAlunos+1);
-
     printf("Nome: ");
-    scanf(" %s", &novoAluno.nome);
+    scanf(" %s", novoAluno.nome);
 
     printf("Matricula: ");
     scanf("%d", &novoAluno.nMatricula);
@@ -121,7 +119,7 @@ void updateAlunos(Aluno list[], int qtdAlunos){
         printf("\n(Professor No%d)\n", qtdAlunos+1);
 
         printf("Novo nome: ");
-        scanf(" %s", &novoAluno.nome);
+        scanf(" %s", novoAluno.nome);
 
         printf("Nova Matricula: ");
         scanf("%d", &novoAluno.nMatricula);

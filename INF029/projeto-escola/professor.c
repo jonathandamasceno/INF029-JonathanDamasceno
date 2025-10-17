@@ -14,10 +14,8 @@ void cadProfessor(Professor list[], int* qtdProfessor){
         return;
     }
 
-    printf("\n(Professor No%d)\n", *qtdProfessor+1);
-
     printf("Nome: ");
-    scanf(" %s", &novoProfessor.nome);
+    scanf(" %s", novoProfessor.nome);
 
     printf("Matricula: ");
     scanf("%d", &novoProfessor.nMatricula);

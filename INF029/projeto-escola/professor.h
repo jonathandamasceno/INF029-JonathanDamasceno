@@ -1,7 +1,10 @@
+#ifndef PROFESSOR_H
+#define PROFESSOR_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#define MAX_PROFESSORES 5
+#define MAX_PROFESSORES 3
 
 //----struct professor----//
 typedef struct professor{
@@ -32,3 +35,5 @@ void listaProfessorNascimento(Professor list[], int qtdProfessor);
 void listaProfessorAniversariante(Professor list[], int qtdProfessor, int mes);
 void listaProfessorSexo(Professor list[], int qtdProfessor);
 /*------------------------------------------------------------------------*/
+
+#endif

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "discilinas.h"
+#include "disciplina.h"
 #include "aluno.h"
 #include "professor.h"
 #include "utils.h"
@@ -22,6 +22,21 @@ void startCadaster(){
         {
         case 1: cadAlunos(alunos, &qtd_alunos); break;
         case 2: cadProfessor(professores, &qtd_professores); break;
+        case 3: {
+            int opc;
+            printf("\n--------------------------------\n"
+                    "1 - Cadastrar disciplina\n"
+                    "2 - Cadastrar aluno em disciplina"
+                    "\n-------------------------------\n"
+                    ">");
+            scanf("%d", &opc);
+            if(opc == 1){
+                adicionaDisciplina(disciplinas, professores, qtd_professores, &qtd_disciplinas); break;
+            }else if(opc == 2){
+                adicionaAlunoDisciplina(disciplinas, alunos, qtd_alunos, qtd_disciplinas); break;
+            }
+            printf("opcao invalida"); break;
+        }
         default: printf("valor invalido"); break;
         }
     }
@@ -44,6 +59,7 @@ void startListing(){
         {
         case 1: listAlunos(alunos, qtd_alunos); break;
         case 2: listProfessor(professores, qtd_professores); break;
+        case 3: listaDisciplinas(disciplinas, qtd_disciplinas, professores, qtd_professores);
         default: printf("valor invalido"); break;
         }
     }

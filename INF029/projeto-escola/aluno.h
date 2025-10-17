@@ -1,7 +1,10 @@
+#ifndef ALUNO_H
+#define ALUNO_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#define MAX_ALUNOS 5
+#define MAX_ALUNOS 50
 
 //----struct aluno----//
 typedef struct aluno{
@@ -32,3 +35,5 @@ void listaAlunoNascimento(Aluno list[], int qtdAlunos);
 void listaAlunoAniversariante(Aluno list[], int qtdAlunos, int mes);
 void listaAlunoSexo(Aluno list[], int qtdAlunos);
 /*------------------------------------------------------------------------*/
+
+#endif

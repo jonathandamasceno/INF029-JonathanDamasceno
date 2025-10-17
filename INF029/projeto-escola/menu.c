@@ -3,22 +3,17 @@
 #include "aluno.h"
 #include "professor.h"
 #include "utils.h"
-//#include "disciplina.h"
+#include "disciplina.h"
 
 //----menu----//
 void menu();
-/*
-//----struct disciplina----//
-typedef struct disciplina{
-    int nMatricula;
-    // falta coisa
-} Disciplina;
-*/
 
 //--------main------//
 int main(){
     int qtd_alunos = 0;
     int qtd_professores = 0;
+    int qtd_disciplinas = 0;
+
     menu();
 
     return 0;
