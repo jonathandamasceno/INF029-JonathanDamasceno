@@ -200,8 +200,5 @@ int validaCpf(char cpf[]){
 }
 
 void relatorios(){
-    printf("...");
-    // só um exemplo
-    // switch -> ...
-    listaProfessorNome(professores, qtd_professores);
+    /*code*/
 }
