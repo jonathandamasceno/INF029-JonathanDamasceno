@@ -4,6 +4,7 @@
 
 # 19/09/25 [atividade](INF029/cadastro_carros/cadastro.c)
 # 17/10/25 [projeto-escola](INF029/projeto-escola)
+# 17/10/25 [trabalho1](INF029-JonathanDamasceno)
 ## Visão Geral
 
 Essa é só uma parte do projeto final utilizando somente o módulo de aluno, com o propósito de testar funcionalidades e consequentemente desenvolver parte do projeto final enquanto aprendo funções, modularização, structs, entre outras coisas.
