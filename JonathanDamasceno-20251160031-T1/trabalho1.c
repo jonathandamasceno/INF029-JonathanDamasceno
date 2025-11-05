@@ -21,7 +21,7 @@
 // #################################################
 
 #include <stdio.h>
-#include "JonathanDamasceno-20251160031.h" 
+#include "trabalho1.h" 
 #include <stdlib.h>
 
 DataQuebrada quebraData(char data[]);
@@ -93,15 +93,25 @@ int q1(char data[])
 {
   int datavalida = 1;
 
+  int iDia = quebraData(data).iDia;
+  int iMes = quebraData(data).iMes;
+  int iAno = quebraData(data).iAno;
+
   //quebrar a string data em strings sDia, sMes, sAno
+  int diaCadaMes[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
+  if(iDia < 1 || iDia > 31) return 0;
+  if(iMes < 1 || iMes > 12) return 0;
+  if(iAno < 1900 || iAno > 2025) return 0;
 
-  //printf("%s\n", data);
+  // se o ano for bissexto -> fev tem 29 dias
+  if(iMes == 2 && ((iAno % 400 == 0) || (iAno % 4 == 0 && iAno % 100 != 0))){
+        return (iDia >= 1 && iDia <= 29);
+  }
 
-  if (datavalida)
-      return 1;
-  else
-      return 0;
+  datavalida = iDia <= diaCadaMes[iMes - 1] && iDia >= 1;
+
+  return datavalida;
 }
 
 
@@ -123,26 +133,44 @@ int q1(char data[])
 DiasMesesAnos q2(char datainicial[], char datafinal[])
 {
 
-    //calcule os dados e armazene nas três variáveis a seguir
-    DiasMesesAnos dma;
+   //calcule os dados e armazene nas três variáveis a seguir
+   DiasMesesAnos dma;
 
-    if (q1(datainicial) == 0){
+   if (q1(datainicial) == 0){
       dma.retorno = 2;
       return dma;
-    }else if (q1(datafinal) == 0){
+   }else if (q1(datafinal) == 0){
       dma.retorno = 3;
       return dma;
-    }else{
+   }else{
       //verifique se a data final não é menor que a data inicial
-      
-      //calcule a distancia entre as datas
+      DiasMesesAnos dataInicio, dataFim;
+      dataInicio.qtdDias = quebraData(datainicial).iDia;
+      dataInicio.qtdMeses = quebraData(datainicial).iMes;
+      dataInicio.qtdAnos = quebraData(datainicial).iAno;
 
+      //
+      dataFim.qtdDias = quebraData(datafinal).iDia;
+      dataFim.qtdMeses = quebraData(datafinal).iMes;
+      dataFim.qtdAnos = quebraData(datafinal).iAno;
+
+      if(dataInicio.qtdAnos > dataFim.qtdAnos){
+         dma.retorno = 4;
+         return dma;
+      }else if(dataInicio.qtdAnos == dataFim.qtdAnos){
+         if((dataInicio.qtdMeses > dataFim.qtdMeses) || ((dataInicio.qtdMeses == dataFim.qtdMeses) && dataInicio.qtdDias > dataFim.qtdDias)){
+            dma.retorno = 4;
+            return dma;
+         }
+      }
+
+      //calcule a distancia entre as datas
 
       //se tudo der certo
       dma.retorno = 1;
       return dma;
       
-    }
+   }
     
 }
 
@@ -158,11 +186,30 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
  */
 int q3(char *texto, char c, int isCaseSensitive)
 {
-    int qtdOcorrencias = -1;
+   int qtdOcorrencias = 0;
+   
+   for (int i = 0; texto[i] != '\0'; i++) {
+       if (isCaseSensitive == 1) {
+           if (texto[i] == c)
+               qtdOcorrencias++;
+       } else {
+            char temp_txt = texto[i], temp_c = c;
+            if(texto[i] >= 'A' && texto[i] <= 'Z'){
+               temp_txt = texto[i] + 32;
+            }
 
-    return qtdOcorrencias;
+            if(c >= 'A' && c <= 'Z'){
+               temp_c = c + 32;
+            }
+
+            if (temp_c == temp_txt){
+               qtdOcorrencias++;
+            }
+       }
+   }
+
+   return qtdOcorrencias;  
 }
-
 /*
  Q4 = encontrar palavra em texto
  @objetivo

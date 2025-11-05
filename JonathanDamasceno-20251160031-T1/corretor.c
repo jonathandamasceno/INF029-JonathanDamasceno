@@ -18,7 +18,7 @@
 #include <string.h>
 
 //renomeie o arquivo do include abaixo para trabalho1.h
-#include "JonathanDamasceno-20251160031.h"
+#include "trabalho1.h"
 
 void testSomar();    //função utilizada para testes
 void testFatorial(); //função utilizada para testes
@@ -34,13 +34,13 @@ int main()
 {
     // testSomar();
     // testFatorial();
-    testQ1();
-    testQ2();
+    // testQ1();
+    //testQ2();
     testQ3();
-    testQ4();
-    testQ5();
-    testQ6();
-    testQ7();
+    // testQ4();
+    // testQ5();
+    // testQ6();
+    // testQ7();
 }
 
 void testSomar()
