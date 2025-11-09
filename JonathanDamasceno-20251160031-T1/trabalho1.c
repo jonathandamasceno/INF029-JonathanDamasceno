@@ -23,8 +23,10 @@
 #include <stdio.h>
 #include "trabalho1.h" 
 #include <stdlib.h>
+#include <locale.h> // q4
 
 DataQuebrada quebraData(char data[]);
+void filtraAcentos(char *strTexto);
 
 /*
 ## função utilizada para testes  ##
@@ -91,27 +93,27 @@ int teste(int a)
  */
 int q1(char data[])
 {
-  int datavalida = 1;
+   int datavalida = 1;
 
-  int iDia = quebraData(data).iDia;
-  int iMes = quebraData(data).iMes;
-  int iAno = quebraData(data).iAno;
+   int iDia = quebraData(data).iDia;
+   int iMes = quebraData(data).iMes;
+   int iAno = quebraData(data).iAno;
 
-  //quebrar a string data em strings sDia, sMes, sAno
-  int diaCadaMes[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+   //quebrar a string data em strings sDia, sMes, sAno
+   int diaCadaMes[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
-  if(iDia < 1 || iDia > 31) return 0;
-  if(iMes < 1 || iMes > 12) return 0;
-  if(iAno < 1900 || iAno > 2025) return 0;
+   if(iDia < 1 || iDia > 31) return 0;
+   if(iMes < 1 || iMes > 12) return 0;
+   if(iAno < 1900 || iAno > 2025) return 0;
 
-  // se o ano for bissexto -> fev tem 29 dias
-  if(iMes == 2 && ((iAno % 400 == 0) || (iAno % 4 == 0 && iAno % 100 != 0))){
-        return (iDia >= 1 && iDia <= 29);
+   // se o ano for bissexto -> fev tem 29 dias
+   if(iMes == 2 && ((iAno % 400 == 0) || (iAno % 4 == 0 && iAno % 100 != 0))){
+         return (iDia >= 1 && iDia <= 29);
   }
 
-  datavalida = iDia <= diaCadaMes[iMes - 1] && iDia >= 1;
+   datavalida = iDia <= diaCadaMes[iMes - 1] && iDia >= 1;
 
-  return datavalida;
+   return datavalida;
 }
 
 
@@ -227,9 +229,39 @@ int q3(char *texto, char c, int isCaseSensitive)
  */
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
-    int qtdOcorrencias = -1;
 
-    return qtdOcorrencias;
+   int qtdOcorrencias = 0;
+   int iCont = 0, jCont = 0, kCont = 0;
+   int primeiraOcorrencia=0, ultimaOcorrencia=0, achou = 1;
+   int posIndice = 0;
+
+   for(iCont = 0; strTexto[iCont] != '\0'; iCont++){
+      if(strTexto[iCont] == strBusca[0]){
+         jCont = iCont;
+         kCont = 0;
+         achou = 1;
+         while(strBusca[kCont] != '\0'){
+            
+            if(strTexto[jCont] != strBusca[kCont]){
+               achou = 0;
+               break;
+            }
+            kCont++;
+            jCont++;
+         }
+         ultimaOcorrencia = jCont;
+ 
+         if(achou == 1){
+            posicoes[posIndice] = iCont + 1;
+            posIndice++;
+            posicoes[posIndice] = ultimaOcorrencia;
+            posIndice++;
+            // printf("oc: %d = (p: %d u: %d)\n", qtdOcorrencias+1, iCont + 1, ultimaOcorrencia); debug
+            qtdOcorrencias++;
+         }
+      }
+   }
+   return qtdOcorrencias;
 }
 
 /*
@@ -245,7 +277,24 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 int q5(int num)
 {
 
-    return num;
+   int digito, iCont = 0, jCont = 0;
+   int numeros[10], aux = 1; // variavel aux pra fazer a multiplicação
+
+   // separa os digitos e coloca num array
+   while(num != 0){
+      digito = (num % 10);
+      numeros[iCont] = digito;
+      iCont++; // pra saber quantos digitos tem
+      num = num / 10;
+   }
+
+   num = 0; // zera o num pra colocar o novo valor
+   for(jCont = iCont-1; jCont >=0; jCont--){ // faz o caminho de trás pra frente
+      num = num + numeros[jCont] * aux; // multiplico 1, 10, 100, 1000...
+      aux = aux * 10; // variavel que faz isso
+   }  
+
+   return num;
 }
 
 /*
@@ -260,8 +309,41 @@ int q5(int num)
 
 int q6(int numerobase, int numerobusca)
 {
-    int qtdOcorrencias;
-    return qtdOcorrencias;
+   int qtdOcorrencias=0;
+
+   int digito, iCont = 0, jCont = 0, kCont = 0, achou = 1, aux=0;
+   int numerosBase[15], numerosBusca[15];
+
+   
+   while(numerobase != 0){
+      digito = (numerobase % 10);
+      numerosBase[iCont] = digito;
+      // printf("%d ", numerosBase[iCont]);
+      iCont++; // pra saber quantos digitos tem
+      numerobase = numerobase / 10;
+   }
+
+   while(numerobusca != 0){
+      digito = (numerobusca % 10);
+      numerosBusca[jCont] = digito;
+      jCont++; // pra saber quantos digitos tem
+      numerobusca = numerobusca / 10;
+   }
+
+   for(kCont = 0; kCont <= iCont - jCont; kCont++){
+      achou = 1;
+      for(aux = 0; aux < jCont; aux++){
+         if(numerosBase[kCont + aux] != numerosBusca[aux]){
+            achou = 0;
+            break;
+         }
+      }
+      if(achou == 1){
+         qtdOcorrencias++;
+      }
+   }
+
+   return qtdOcorrencias;
 }
 
 /*
