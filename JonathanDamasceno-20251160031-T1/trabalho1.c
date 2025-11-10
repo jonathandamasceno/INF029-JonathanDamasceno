@@ -109,7 +109,7 @@ int q1(char data[])
    // se o ano for bissexto -> fev tem 29 dias
    if(iMes == 2 && ((iAno % 400 == 0) || (iAno % 4 == 0 && iAno % 100 != 0))){
          return (iDia >= 1 && iDia <= 29);
-  }
+   }
 
    datavalida = iDia <= diaCadaMes[iMes - 1] && iDia >= 1;
 
@@ -146,28 +146,28 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
       return dma;
    }else{
       //verifique se a data final não é menor que a data inicial
-      DiasMesesAnos dataInicio, dataFim;
-      dataInicio.qtdDias = quebraData(datainicial).iDia;
-      dataInicio.qtdMeses = quebraData(datainicial).iMes;
-      dataInicio.qtdAnos = quebraData(datainicial).iAno;
 
+      DataQuebrada ini = quebraData(datainicial);
       //
-      dataFim.qtdDias = quebraData(datafinal).iDia;
-      dataFim.qtdMeses = quebraData(datafinal).iMes;
-      dataFim.qtdAnos = quebraData(datafinal).iAno;
+      DataQuebrada fim = quebraData(datafinal);
 
-      if(dataInicio.qtdAnos > dataFim.qtdAnos){
+      if(ini.iAno > fim.iAno){
          dma.retorno = 4;
          return dma;
-      }else if(dataInicio.qtdAnos == dataFim.qtdAnos){
-         if((dataInicio.qtdMeses > dataFim.qtdMeses) || ((dataInicio.qtdMeses == dataFim.qtdMeses) && dataInicio.qtdDias > dataFim.qtdDias)){
+      }else if(ini.iAno == fim.iAno){
+         if((ini.iMes > fim.iMes) || ((ini.iMes == fim.iMes) && ini.iDia > fim.iDia)){
             dma.retorno = 4;
             return dma;
          }
       }
 
       //calcule a distancia entre as datas
+      int diaCadaMes[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+      dma.qtdAnos = fim.iAno - ini.iAno;
+      dma.qtdMeses = fim.iMes - ini.iMes;
+      dma.qtdDias = fim.iDia - ini.iDia;
 
+      printf("(%d - %d - %d)\n", dma.qtdDias, dma.qtdMeses, dma.qtdAnos);
       //se tudo der certo
       dma.retorno = 1;
       return dma;
