@@ -34,12 +34,12 @@ int main()
 {
     // testSomar();
     // testFatorial();
-    // testQ1(); feita
-    // testQ2(); faltam coisas
-    // testQ3(); feita
-    // testQ4(); feita
-    // testQ5(); feita
-    // testQ6(); feita
+    testQ1();
+    testQ2();
+    testQ3();
+    testQ4();
+    testQ5();
+    testQ6();
     // testQ7(); nao comecei
 }
 

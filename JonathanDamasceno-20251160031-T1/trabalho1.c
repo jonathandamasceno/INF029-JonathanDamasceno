@@ -23,10 +23,8 @@
 #include <stdio.h>
 #include "trabalho1.h" 
 #include <stdlib.h>
-#include <locale.h> // q4
 
 DataQuebrada quebraData(char data[]);
-void filtraAcentos(char *strTexto);
 
 /*
 ## função utilizada para testes  ##
@@ -39,6 +37,7 @@ void filtraAcentos(char *strTexto);
 @saida
     resultado da soma (x + y)
  */
+
 int somar(int x, int y)
 {
     int soma;
@@ -167,8 +166,8 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
       dma.qtdMeses = fim.iMes - ini.iMes;
       dma.qtdDias = fim.iDia - ini.iDia;
 
-      printf("(%d - %d - %d)\n", dma.qtdDias, dma.qtdMeses, dma.qtdAnos);
-      //se tudo der certo
+      // printf("(%d - %d - %d)\n", dma.qtdDias, dma.qtdMeses, dma.qtdAnos);
+      // se tudo der certo
       dma.retorno = 1;
       return dma;
       
