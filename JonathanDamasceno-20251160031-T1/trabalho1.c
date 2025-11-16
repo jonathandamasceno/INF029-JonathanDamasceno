@@ -357,8 +357,37 @@ int q6(int numerobase, int numerobusca)
 
  int q7(char matriz[8][10], char palavra[5])
  {
-     int achou;
-     return achou;
+
+      int achou = 0;
+      int lenPalavra;
+      int iCont, jCont, kCont;
+
+      for(lenPalavra=0; palavra[lenPalavra]; lenPalavra++);
+      char palavraInvertida[lenPalavra];
+
+      // invertendo e colocando em outra string
+      for(int c = lenPalavra - 1, aux=0; c >= 0; c--, aux++){
+         palavraInvertida[aux] = palavra[c];
+      }
+
+      // esquerda -> direita || direita -> esquerda (pode estar invertida)
+      achou = 0;
+      for(iCont=0; iCont < 8; iCont++){
+         for(jCont=0; jCont<10; jCont++){
+            if(matriz[iCont][jCont] == palavra[0]){
+               for(kCont=0; kCont < lenPalavra; kCont++){
+                  if(matriz[iCont][jCont+kCont] != palavra[kCont] && matriz[iCont][jCont+kCont] != palavraInvertida[kCont]){
+                     break;
+                  }
+               }
+            }  
+            if(kCont == lenPalavra){
+               achou = 1;
+               break;
+            }
+         }
+      }
+      return achou;
  }
 
 
