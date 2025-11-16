@@ -370,6 +370,8 @@ int q6(int numerobase, int numerobusca)
          palavraInvertida[aux] = palavra[c];
       }
 
+
+      // horizontal
       // esquerda -> direita || direita -> esquerda (pode estar invertida)
       achou = 0;
       for(iCont=0; iCont < 8; iCont++){
@@ -387,6 +389,25 @@ int q6(int numerobase, int numerobusca)
             }
          }
       }
+
+      // vertical 
+      // cima -> baixo, baixo -> cima
+      for(iCont=0; iCont < 8; iCont++){ // 0
+         for(jCont=0; jCont<10; jCont++){ // 00 01
+            if(matriz[iCont][jCont] == palavra[0]){
+               for(kCont=0; kCont < lenPalavra; kCont++){
+                  if(matriz[iCont + jCont][jCont] != palavra[kCont] && matriz[iCont + jCont][jCont] != palavraInvertida[kCont]){
+                     break;
+                  }
+               }
+            }  
+            if(kCont == lenPalavra){
+               achou = 1;
+               break;
+            }
+         }
+      }
+      // caso passe
       return achou;
  }
 
