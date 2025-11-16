@@ -376,27 +376,40 @@ int q6(int numerobase, int numerobusca)
       achou = 0;
       for(iCont=0; iCont < 8; iCont++){
          for(jCont=0; jCont<10; jCont++){
-            if(matriz[iCont][jCont] == palavra[0]){
+            if(matriz[iCont][jCont] == palavra[0] || matriz[iCont][jCont] == palavraInvertida[0]){
+               kCont = 0;
                for(kCont=0; kCont < lenPalavra; kCont++){
+                  // nao sai do limite da matriz
+                  if(jCont + kCont >= 10){
+                     break;
+                  }
+
                   if(matriz[iCont][jCont+kCont] != palavra[kCont] && matriz[iCont][jCont+kCont] != palavraInvertida[kCont]){
                      break;
                   }
                }
+
+               if(kCont == lenPalavra){
+                  achou = 1;
+                  break;
+               }
             }  
-            if(kCont == lenPalavra){
-               achou = 1;
-               break;
-            }
          }
       }
 
       // vertical 
       // cima -> baixo, baixo -> cima
+      kCont = 0;
       for(iCont=0; iCont < 8; iCont++){ // 0
          for(jCont=0; jCont<10; jCont++){ // 00 01
-            if(matriz[iCont][jCont] == palavra[0]){
+            if(matriz[iCont][jCont] == palavra[0] || matriz[iCont][jCont] == palavraInvertida[0]){
+               kCont = 0;
                for(kCont=0; kCont < lenPalavra; kCont++){
-                  if(matriz[iCont + jCont][jCont] != palavra[kCont] && matriz[iCont + jCont][jCont] != palavraInvertida[kCont]){
+                  // nao sai do limite da matriz
+                  if(iCont + kCont >= 8){
+                     break;
+                  }
+                  if(matriz[iCont + kCont][jCont] != palavra[kCont] && matriz[iCont + kCont][jCont] != palavraInvertida[kCont]){
                      break;
                   }
                }
@@ -407,6 +420,56 @@ int q6(int numerobase, int numerobusca)
             }
          }
       }
+      /*------------------------------------------------------------------------------------------*/
+      // diagonal direita -> esquerda
+      kCont = 0;
+      for(iCont=0; iCont < 8; iCont++){ // 0
+         for(jCont=0; jCont<10; jCont++){ // 00 01
+            if(matriz[iCont][jCont] == palavra[0] || matriz[iCont][jCont] == palavraInvertida[0]){
+               kCont = 0;
+               for(kCont=0; kCont < lenPalavra; kCont++){
+                  // nao sai do limite da matriz
+                  if(iCont + kCont >= 8 || jCont + kCont >= 10){
+                     break;
+                  }
+                  if(matriz[iCont + kCont][jCont + kCont] != palavra[kCont] && 
+                     matriz[iCont + kCont][jCont + kCont] != palavraInvertida[kCont]){
+                     break;
+                  }
+               }
+            }  
+            if(kCont == lenPalavra){
+               achou = 1;
+               break;
+            }
+         }
+      }
+      /*------------------------------------------------------------------------------------------*/
+      /*------------------------------------------------------------------------------------------*/
+      // diagonal direita -> esquerda
+      kCont = 0;
+      for(iCont=0; iCont < 8; iCont++){ // 0
+         for(jCont=0; jCont<10; jCont++){ // 00 01
+            if(matriz[iCont][jCont] == palavra[0] || matriz[iCont][jCont] == palavraInvertida[0]){
+               kCont = 0;
+               for(kCont=0; kCont < lenPalavra; kCont++){
+                  // nao sai do limite da matriz
+                  if(iCont + kCont >= 8 || jCont - kCont < 0){
+                     break;
+                  }
+                  if(matriz[iCont + kCont][jCont - kCont] != palavra[kCont] && 
+                     matriz[iCont + kCont][jCont - kCont] != palavraInvertida[kCont]){
+                     break;
+                  }
+               }
+            }  
+            if(kCont == lenPalavra){
+               achou = 1;
+               break;
+            }
+         }
+      }
+      /*------------------------------------------------------------------------------------------*/
       // caso passe
       return achou;
  }
