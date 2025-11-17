@@ -446,7 +446,7 @@ int q6(int numerobase, int numerobusca)
       }
       /*------------------------------------------------------------------------------------------*/
       /*------------------------------------------------------------------------------------------*/
-      // diagonal direita -> esquerda
+      // diagonal esquerda -> direita
       kCont = 0;
       for(iCont=0; iCont < 8; iCont++){ // 0
          for(jCont=0; jCont<10; jCont++){ // 00 01
