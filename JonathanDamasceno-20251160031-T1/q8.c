@@ -54,6 +54,95 @@ int validaJogada(char letra, int num, char lista[TAM][TAM]){
     return 0; // nao ❌
 }
 
+int verificaGanhou(char lista[TAM][TAM], int nJogadas){
+    int achou = 0;
+    int j1 = 0, j2 = 0;
+
+    // verifica na horizontal
+    for(int iCont=0; iCont < TAM; iCont++){
+        j1 = 0, j2 = 0;
+        for(int jCont=0; jCont < TAM; jCont++){ 
+            if(lista[iCont][jCont] == 'X'){
+                j1++;
+            }
+            if(lista[iCont][jCont] == 'O'){
+                j2++;
+            }
+        }
+
+        // validando se ganhou
+        if(j1 == 3){
+            return 1;
+        }else if(j2 == 3){
+            return 2;
+        }
+    }
+
+    // verifica na vertical
+    for(int iCont=0; iCont <TAM; iCont++){
+        j1 = 0, j2 = 0;
+        for(int jCont=0; jCont<TAM; jCont++){
+            if(iCont+jCont >= 3){
+                break;
+            }
+
+            if(lista[iCont+jCont][jCont] == 'X'){
+                j1++;
+            }
+            if(lista[iCont+jCont][jCont] == 'O'){
+                j2++;
+            }
+        }
+        
+        // validando se ganhou
+        if(j1 == 3){
+            return 1;
+        }else if(j2 == 3){
+            return 2;
+        }
+    }
+
+    // diagonal
+    for(int iCont = 0; iCont < TAM; iCont++){
+        if(lista[iCont][iCont] == 'X'){
+            j1++;
+        }
+        if(lista[iCont][iCont] == 'O'){
+            j2++;
+        }
+    }
+    if(j1 == 3){
+        return 1;
+    }else if(j2 == 3){
+        return 2;
+    }
+
+    // contraria
+    int aux = TAM - 1;
+    j1 = 0, j2 = 0;
+    for(int iCont = 0; iCont < TAM; iCont++){
+        if(lista[iCont][aux] == 'X'){
+            j1++;
+        }
+        if(lista[iCont][aux] == 'O'){
+            j2++;
+        }
+        aux--;
+    }
+
+    if(j1 == 3){
+        return 1;
+    }else if(j2 == 3){
+        return 2;
+    }
+
+    if(nJogadas == 9){
+        return 3;
+    }
+
+    return 0;
+}
+
 int main(){
 
 
@@ -62,32 +151,39 @@ int main(){
                                 {' ', ' ', ' '},
                                 {' ', ' ', ' '}};
 
-    int ganhou = 0, player = 1;
+    int ganhou = 0, player = 1, nJogadas =0;
     char jogadores[2] = {'X','O'};
     
-    while(1){ // loop do jogo
+    while(!verificaGanhou(cerquilha, nJogadas)){ // loop do jogo
         char letra;
         int num = 0;
         printf("jogador %d\nescolha: ", player);
         scanf(" %c %d", &letra, &num);
         if(validaJogada(letra, num, cerquilha)){
+            // tem que mudar por aqui tambem
             if(letra >= 'a' && letra <= 'c'){
                 letra -= 32;
             }
+            // coloca a opção na casa
             cerquilha[letra - 'A'][num-1] = jogadores[player-1];
+            nJogadas++;
+            // pra ficar indo e voltando o numero do jogador
+            if(player % 2 == 0){
+                player -= 1;
+            }else{
+                player += 1;
+            }
         }else{
-            printf("jogada invalida\n");
+            printf("jogada invalida, escolha novamente:\n");
         }
-
-        // pra ficar indo e voltando o numero do jogador
-        if(player % 2 == 0){
-            player -= 1;
-        }else{
-            player += 1;
-        }
-
 
         mostraTabuleiro(cerquilha);
+    }
+    int ganhador = verificaGanhou(cerquilha, nJogadas);
+    if(ganhador == 3){
+        printf("Empate");
+    }else{
+        printf("\n--------------------\nganhador: jogador %d\n--------------------\n", ganhador);
     }
     
 }
