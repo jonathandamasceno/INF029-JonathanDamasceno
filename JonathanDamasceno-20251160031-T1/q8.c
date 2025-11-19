@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define TAM 3
 // questão jogo da velha
 
@@ -82,17 +83,15 @@ int verificaGanhou(char lista[TAM][TAM], int nJogadas){
     for(int iCont=0; iCont <TAM; iCont++){
         j1 = 0, j2 = 0;
         for(int jCont=0; jCont<TAM; jCont++){
-            if(iCont+jCont >= 3){
-                break;
-            }
 
-            if(lista[iCont+jCont][jCont] == 'X'){
+            if(lista[jCont][iCont] == 'X'){
                 j1++;
             }
-            if(lista[iCont+jCont][jCont] == 'O'){
+            if(lista[jCont][iCont] == 'O'){
                 j2++;
             }
         }
+        
         
         // validando se ganhou
         if(j1 == 3){
@@ -159,6 +158,7 @@ int main(){
         int num = 0;
         printf("jogador %d\nescolha: ", player);
         scanf(" %c %d", &letra, &num);
+        system("cls");
         if(validaJogada(letra, num, cerquilha)){
             // tem que mudar por aqui tambem
             if(letra >= 'a' && letra <= 'c'){
