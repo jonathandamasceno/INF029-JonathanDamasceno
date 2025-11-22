@@ -10,13 +10,13 @@
 //  O aluno deve preencher seus dados abaixo, e implementar as questões do trabalho
 
 //  ----- Dados do Aluno -----
-//  Nome:
-//  email:
-//  Matrícula:
-//  Semestre:
+//  Nome: Jonathan Damasceno de Araujo
+//  email: contato.jonathandamasceno@gmail.com
+//  Matrícula: 20251160031
+//  Semestre: 2025.2
 
 //  Copyright © 2016 Renato Novais. All rights reserved.
-// Última atualização: 07/05/2021
+// Última atualização: 21/11/2025
 
 // #################################################
 #ifndef TRABALHO1_H
