@@ -228,10 +228,37 @@ Rertono (int)
 int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[])
 {
 
-    int retorno = 0;
+    int posicaoReal = posicao - 1;
 
-    
-    return retorno;
+    if(vetorPrincipal[posicaoReal] == NULL){
+        return SEM_ESTRUTURA_AUXILIAR;
+    }
+
+    vAux *aux = vetorPrincipal[posicaoReal];
+
+    if(posicao < 1 || posicao > 10){
+        return POSICAO_INVALIDA;
+    }
+
+    // ordenando usando insertion
+    int jCont = 0, key;
+    for(int iCont = 1; iCont<aux->qtdElementos; iCont++){
+        key = aux->elemento[iCont];
+        jCont = iCont -1;
+        while(jCont >= 0 && aux->elemento[jCont] > key){
+            aux->elemento[jCont + 1] = aux->elemento[jCont];
+            jCont = jCont -1;
+        }
+
+        aux->elemento[jCont+1] = key;
+    }
+
+    // colocando os elementos ordenados no vetorAux
+    for(int kCont = 0; kCont<aux->qtdElementos; kCont++){
+        vetorAux[kCont] = aux->elemento[kCont];
+    }
+
+    return SUCESSO;
 }
 
 /*
@@ -244,9 +271,33 @@ Rertono (int)
 */
 int getDadosDeTodasEstruturasAuxiliares(int vetorAux[])
 {
+    int temEst = 0;
 
-    int retorno = 0;
-    return retorno;
+
+    /*testa se tem alguma estrutura com algum item*/
+    for(int iCont = 0; iCont<TAM; iCont++){
+        if(vetorPrincipal[iCont] != NULL){
+            temEst = 1;
+        }
+    }
+    if(!temEst){
+        return TODAS_ESTRUTURAS_AUXILIARES_VAZIAS;
+    }
+
+    // verifica se existe a estrutura, se existir, copia todos os valores dela
+    int tamVetorAux = 0;
+    for(int iCont = 0; iCont<TAM; iCont++){
+        if(vetorPrincipal[iCont] != NULL){
+            vAux * aux = vetorPrincipal[iCont];
+            for(int kCont = 0; kCont < aux->qtdElementos; kCont++){
+                vetorAux[tamVetorAux] = aux->elemento[kCont];
+                tamVetorAux++;
+            }
+        }
+    }
+
+    
+    return SUCESSO;
 }
 
 /*
@@ -259,9 +310,45 @@ Rertono (int)
 */
 int getDadosOrdenadosDeTodasEstruturasAuxiliares(int vetorAux[])
 {
+    int temEst = 0;
 
-    int retorno = 0;
-    return retorno;
+    /*testa se tem alguma estrutura com algum item*/
+    for(int iCont = 0; iCont<TAM; iCont++){
+        if(vetorPrincipal[iCont] != NULL){
+            temEst = 1;
+        }
+    }
+    if(!temEst){
+        return TODAS_ESTRUTURAS_AUXILIARES_VAZIAS;
+    }
+
+    // verifica se existe a estrutura, se existir, copia todos os valores dela
+    int tamVetorAux = 0;
+    for(int iCont = 0; iCont<TAM; iCont++){
+        if(vetorPrincipal[iCont] != NULL){
+            vAux * aux = vetorPrincipal[iCont];
+
+            // ordenando usando insertion
+            int jCont = 0, key;
+            for(int insCont = 1; insCont < aux->qtdElementos; insCont++){
+                key = aux->elemento[insCont];
+                jCont = insCont -1;
+                while(jCont >= 0 && aux->elemento[jCont] > key){
+                    aux->elemento[jCont + 1] = aux->elemento[jCont];
+                    jCont = jCont -1;
+                }
+
+                aux->elemento[jCont+1] = key;
+            }
+
+            for(int kCont = 0; kCont < aux->qtdElementos; kCont++){
+                vetorAux[tamVetorAux] = aux->elemento[kCont];
+                tamVetorAux++;
+            }
+        }
+    }
+
+    return SUCESSO;
 }
 
 /*
