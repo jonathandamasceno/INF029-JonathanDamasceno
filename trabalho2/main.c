@@ -10,13 +10,13 @@ void dobrar(int *x);
 int menu()
 {
     int op;
-    printf("Digite as opção desejada\n");
+    printf("Digite as opcao desejada\n");
     printf("0 - Sair\n");
     printf("1 - Inserir\n");
     printf("2 - Excluir\n");
     printf("3 - Listar uma estrutura\n");
     printf("4 - Dobrar Numero\n");
-    printf("5 - \n");
+    printf("5 - criar\n");
     scanf("%d", &op);
     return op;
 }
@@ -93,14 +93,21 @@ int main()
             }
             break;
         }
+        case 5:
+        {
+            int pos, tam;
+            scanf("%d %d", &pos, &tam);
+            criarEstruturaAuxiliar(pos, tam);
+            break;
 
+        }
         case 10:
         { //dobrar
             //ler um numero
             int valor;
             scanf("%i", &valor);
 
-            dobrar(&valor);
+            // dobrar(&valor);
 
             //passar para um funcao (void dobrar(...)) que recebe o numero e dobra (EstruturaVetores.c)
 
