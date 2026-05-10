@@ -50,5 +50,5 @@ int q5(int num);
 int q6(int numerobase, int numerobusca);
 int q7(char matriz[8][10], char palavra[5]);
 DataQuebrada quebraData(char data[]);
-
+int transformaVetor(char strTexto[], int intTexto[100]);
 #endif  // MAIN_H

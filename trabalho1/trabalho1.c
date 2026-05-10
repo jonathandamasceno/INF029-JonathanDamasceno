@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include "trabalho1.h" 
 #include <stdlib.h>
+#include <string.h>
 
 DataQuebrada quebraData(char data[]);
 
@@ -114,9 +115,6 @@ int q1(char data[])
 
    return datavalida;
 }
-
-
-
 /*
  Q2 = diferença entre duas datas
  @objetivo
@@ -172,7 +170,6 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
       return dma;
       
    }
-    
 }
 
 /*
@@ -228,24 +225,29 @@ int q3(char *texto, char c, int isCaseSensitive)
  */
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
+   // refazendo de forma que ignore caracteres com acentucação
+   int vetorTexto[100], vetorBusca[100];
+   int tamTexto, tamInt;
+
+   tamTexto = transformaVetor(strTexto, vetorTexto);
+   tamInt = transformaVetor(strBusca, vetorBusca);
 
    int qtdOcorrencias = 0;
    int iCont = 0, jCont = 0, kCont = 0;
    int primeiraOcorrencia=0, ultimaOcorrencia=0, achou = 1;
    int posIndice = 0;
 
-   for(iCont = 0; strTexto[iCont] != '\0'; iCont++){
-      if(strTexto[iCont] == strBusca[0]){
+   for(iCont = 0; iCont < tamTexto; iCont++){
+      if(vetorTexto[iCont] == vetorBusca[0]){
          jCont = iCont;
          kCont = 0;
          achou = 1;
-         while(strBusca[kCont] != '\0'){
-            
-            if(strTexto[jCont] != strBusca[kCont]){
+
+         for(kCont = 0; kCont < tamInt; kCont++){
+            if(vetorTexto[jCont] != vetorBusca[kCont]){
                achou = 0;
                break;
             }
-            kCont++;
             jCont++;
          }
          ultimaOcorrencia = jCont;
@@ -532,4 +534,16 @@ DataQuebrada quebraData(char data[]){
 	dq.valido = 1;
     
   return dq;
+}
+
+
+int transformaVetor(char strTexto[], int intTexto[100]){
+   int tamVetor = 0;
+   for(int i = 0; strTexto[i] != '\0'; i++){
+      if(strTexto[i] != -61){
+         intTexto[tamVetor] = strTexto[i];
+         tamVetor++;
+      }
+   }
+   return tamVetor;
 }
