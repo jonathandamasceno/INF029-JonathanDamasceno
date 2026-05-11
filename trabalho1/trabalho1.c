@@ -164,7 +164,14 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
       dma.qtdMeses = fim.iMes - ini.iMes;
       dma.qtdDias = fim.iDia - ini.iDia;
 
-      // printf("(%d - %d - %d)\n", dma.qtdDias, dma.qtdMeses, dma.qtdAnos);
+      if(dma.qtdMeses < 0){
+         dma.qtdAnos--;
+         dma.qtdMeses += 12;
+      }
+      if(dma.qtdDias < 0){
+         dma.qtdMeses--;
+         dma.qtdDias = diaCadaMes[fim.iMes - 2] - ini.iDia + fim.iDia;
+      }
       // se tudo der certo
       dma.retorno = 1;
       return dma;
