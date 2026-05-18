@@ -102,6 +102,7 @@ int verificaGanhou(char lista[TAM][TAM], int nJogadas){
     }
 
     // diagonal
+    j1 = 0, j2 = 0;
     for(int iCont = 0; iCont < TAM; iCont++){
         if(lista[iCont][iCont] == 'X'){
             j1++;
@@ -152,7 +153,7 @@ int main(){
 
     int ganhou = 0, player = 1, nJogadas =0;
     char jogadores[2] = {'X','O'};
-    
+    mostraTabuleiro(cerquilha);
     while(!verificaGanhou(cerquilha, nJogadas)){ // loop do jogo
         char letra;
         int num = 0;
