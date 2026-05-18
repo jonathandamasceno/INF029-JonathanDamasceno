@@ -99,19 +99,27 @@ int q1(char data[])
    int iMes = quebraData(data).iMes;
    int iAno = quebraData(data).iAno;
 
+   if(iAno >= 1 && iAno <= 26){
+      iAno += 2000;
+   }
+   else if(iAno > 26 && iAno < 100){
+      iAno += 1900;
+   }
+
+
    //quebrar a string data em strings sDia, sMes, sAno
    int diaCadaMes[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
    if(iDia < 1 || iDia > 31) return 0;
    if(iMes < 1 || iMes > 12) return 0;
-   if(iAno < 1900 || iAno > 2025) return 0;
+   if(iAno < 1900 || iAno > 2026) return 0;
 
    // se o ano for bissexto -> fev tem 29 dias
    if(iMes == 2 && ((iAno % 400 == 0) || (iAno % 4 == 0 && iAno % 100 != 0))){
-         return (iDia >= 1 && iDia <= 29);
+      return (iDia >= 1 && iDia <= 29);
    }
 
-   datavalida = iDia <= diaCadaMes[iMes - 1] && iDia >= 1;
+   datavalida = (iDia <= diaCadaMes[iMes - 1]) && iDia >= 1;
 
    return datavalida;
 }
@@ -160,18 +168,30 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 
       //calcule a distancia entre as datas
       int diaCadaMes[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+      if((fim.iMes - 1) == 2 && ((fim.iAno % 400 == 0) || (fim.iAno % 4 == 0 && fim.iAno % 100 != 0))){
+         diaCadaMes[1] = 29;
+      }
+      
       dma.qtdAnos = fim.iAno - ini.iAno;
       dma.qtdMeses = fim.iMes - ini.iMes;
       dma.qtdDias = fim.iDia - ini.iDia;
+
+      if(dma.qtdDias < 0){
+         dma.qtdMeses--;
+         
+         if(fim.iMes - 1 == 0){
+            fim.iMes = 12;
+         }
+         
+         dma.qtdDias = diaCadaMes[fim.iMes - 2] - ini.iDia + fim.iDia;
+      }
 
       if(dma.qtdMeses < 0){
          dma.qtdAnos--;
          dma.qtdMeses += 12;
       }
-      if(dma.qtdDias < 0){
-         dma.qtdMeses--;
-         dma.qtdDias = diaCadaMes[fim.iMes - 2] - ini.iDia + fim.iDia;
-      }
+
       // se tudo der certo
       dma.retorno = 1;
       return dma;
