@@ -342,32 +342,37 @@ int q6(int numerobase, int numerobusca)
    int digito, iCont = 0, jCont = 0, kCont = 0, achou = 1, aux=0;
    int numerosBase[15], numerosBusca[15];
 
-   
    while(numerobase != 0){
       digito = (numerobase % 10);
       numerosBase[iCont] = digito;
-      // printf("%d ", numerosBase[iCont]);
-      iCont++; // pra saber quantos digitos tem
+      iCont++;
       numerobase = numerobase / 10;
    }
 
    while(numerobusca != 0){
       digito = (numerobusca % 10);
       numerosBusca[jCont] = digito;
-      jCont++; // pra saber quantos digitos tem
+      jCont++;
       numerobusca = numerobusca / 10;
    }
 
    for(kCont = 0; kCont <= iCont - jCont; kCont++){
+
       achou = 1;
+
       for(aux = 0; aux < jCont; aux++){
+
          if(numerosBase[kCont + aux] != numerosBusca[aux]){
             achou = 0;
             break;
          }
       }
+
       if(achou == 1){
+
          qtdOcorrencias++;
+
+         kCont += jCont - 1;
       }
    }
 

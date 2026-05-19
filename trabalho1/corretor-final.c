@@ -17,16 +17,16 @@ int main(){
     testQ1();
     printf("q2\n");
     testQ2();
-    // //printf("q3\n");
-    // testQ3();
-    // //printf("q4\n");
-    // testQ4();
-    // //printf("q5\n");
-    // testQ5();
-    // //printf("q6\n");
-    // testQ6(); 
-    // //printf("q7\n");
-    // testQ7();
+    printf("q3\n");
+    testQ3();
+    printf("q4\n");
+    testQ4();
+    printf("q5\n");
+    testQ5();
+    printf("q6\n");
+    testQ6(); 
+    printf("q7\n");
+    testQ7();
     
     
 }
